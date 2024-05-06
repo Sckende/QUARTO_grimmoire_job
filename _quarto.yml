@@ -1,0 +1,34 @@
+project:
+  type: website
+
+website:
+  title: "QUARTO_grimmoire_job"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: code/code_langage.qmd
+        text: Aide-mémoire langages
+      - posts.qmd
+      - about.qmd
+  sidebar:
+    - title: "Accueil"
+      style: docked #floating
+      background: light
+      contents:
+        - index.qmd
+    ### section aide-memoire langage de prog ###
+    - title: "Langages de programmation"
+      contents:
+        - code/code_langage.qmd
+        - code/python_aide-memoire.md
+        - code/ubuntu_bash.md
+
+format:
+  html:
+    theme: solar
+    css: styles.css
+    toc: true
+
+
+

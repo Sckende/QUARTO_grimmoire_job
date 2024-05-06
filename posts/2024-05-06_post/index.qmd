@@ -1,0 +1,12 @@
+---
+title: "Projet EBVs"
+description: "Description et définition des objectifs du projet"
+author:
+  - name: Claire-Cécile Juhasz 
+date: 05-06-2024
+categories: [EBV, indicateurs] # self-defined categories
+image: data_cube.jpg
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+Trying to create my first blog post.

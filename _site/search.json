@@ -1,0 +1,114 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "code/ubuntu_bash.html",
+    "href": "code/ubuntu_bash.html",
+    "title": "Aide-mémoire Ubuntu & bash",
+    "section": "",
+    "text": "Aide-mémoire Ubuntu & bash\n\n\n\n\n\n\n\n\n\ncommande [paramètres] [arguments]\nRôle\n\n\n\n\n\n\ngnome-system-monitor\néquivalent de ‘task manager’\n\n\n\n\nchown\nchanges the owner of the file or directory specified by the File or Directory parameter to the user specified by the Owner parameter\n\n\n\n\nll\nalias pour ls -l\n\n\n\n\n‘ls -1 | wc -l’\ndénombre quantité de files\n\n\n\n\nhistory\nhistorique des commandes\n\n\n\n\nfc -l -xx\nles xx dernières commandes effectuées\n\n\n\n\nfc -s xx\nrelance la commande numéro xx\n\n\n\n\nfc -s fc=ls xx\nrelance la commande xx en remplaçant\nfc par ls\naller début de la ligne\n\n\nctrl + a\naller fin ligne\n\n\n\n\nctrl + e\ncleaner le termine\n\n\n\n\nctrl + l\neffacer la ligne jusqu’au début\n\n\n\n\nctrl + k\neffacer la ligne jusqu’à la fin\n\n\n\n\ntouch   \ncreate one or several files\n\n\n\n\nvi \ni for insert\n\n\n\n\nnano\nread, modify & save a file - There are two modes - cf RedHat Vi infoseasier!!!\n\n\n\n\nmkdir\ncréation d’un dossier\n\n\n\n\nrmdir\nefface un dossier\n\n\n\n\nrm \neffacer un fichier\n\n\n\n\nrm -rf \neffacer un dossier\n\n\n\n\nrealpath  ou pwd\nchemin absolu\n\n\n\n\necho\naffiche du texte\n\n\n\n\nnpm\nlibrary and registry for JavaScript software packages. npm also has command-line tools to help you install the different packages and manage their dependencies\n\n\n\n\nzip -r &lt;file.zip&gt; \nzip un dossier\n\n\n\n\nsed -i ‘s/old-text/new-text/g’ input.txt\nfind and replace in file(s) cf docu\n\n\n\n\nsed -s ‘2!d’ *.txt &gt; test_cat2.txt\nconcatenate second line of several files\n\n\n\n\nsudo dpkg -i xxx.deb\ninstallation d’un package téléchargé\n\n\n\n\nquarto render xxx.qmd\ncompilation en local d’un fichier quarto\n\n\n\n\n[ctrl][Alt][f5]\nmode tty\n\n\n\n\n[alt][F1]\nexit mode tty\n\n\n\n\nmv ex.txt new.txt\nrenommer un fichier\n\n\n\n\nscp (-r) file/folder_to_send targeted_folder\n-r is for recursive s’il s’agit d’un dossier à envoyer. exemple pour calcul Canada scp ccjuhasz@narval.computecanada.ca:projects/def-dgravel/ccjuhasz/sf_converted_occ_pres_only2.zip\n\n\n\n\nogrinfo -sql “CREATE INDEX index_name ON table_name (column1, column2,columnN…)” my_geopackage.gpkg\nIndex creation for sql request to geopackage file\n\n\n\n\nogrinfo file.gpkg\ngive the name of the database"
+  },
+  {
+    "objectID": "code/python_aide-memoire.html",
+    "href": "code/python_aide-memoire.html",
+    "title": "Aide-mémoire Python",
+    "section": "",
+    "text": "Certains mots font partie du langage Python, et ne peuvent pas être utilisés comme noms de variables. Par exemple, def, match, case, _, del , if, else, break & continue."
+  },
+  {
+    "objectID": "code/python_aide-memoire.html#listes",
+    "href": "code/python_aide-memoire.html#listes",
+    "title": "Aide-mémoire Python",
+    "section": "Listes",
+    "text": "Listes\nlist=[el1, el2, el3, ...]"
+  },
+  {
+    "objectID": "code/python_aide-memoire.html#tuples",
+    "href": "code/python_aide-memoire.html#tuples",
+    "title": "Aide-mémoire Python",
+    "section": "Tuples",
+    "text": "Tuples\nSimilaire aux listes mais non modifiables et définit avec () au lieu de [].\ntuple=(el1, el2, el3, ...)"
+  },
+  {
+    "objectID": "code/python_aide-memoire.html#dictionnaires",
+    "href": "code/python_aide-memoire.html#dictionnaires",
+    "title": "Aide-mémoire Python",
+    "section": "Dictionnaires",
+    "text": "Dictionnaires\nUn dictionnaire est une structure de données qui enregistre des données dans des paires clés-valeurs. Un dictionnaire est défini à l’aide des {}.\n\nnouvelle_campagne = {\n\"responsable_de_campagne\": \"Jeanne d'Arc\",\n\"nom_de_campagne\": \"Campagne nous aimons les chiens\",\n\"date_de_début\": \"01/01/2020\",\n\"influenceurs_importants\": [\"@MonAmourDeChien\", \"@MeilleuresFriandisesPourChiens\"]\n}\nLa fonction dict() peut aussi être utilisée.\nd = dict([\n    (&lt;key&gt;, &lt;value&gt;),\n    (&lt;key&gt;, &lt;value),\n      .\n      .\n      .\n    (&lt;key&gt;, &lt;value&gt;)\n])\nUne valeur peut être un objet complexe telle qu’une liste. Il est possible de modifier le dictionnaire après sa création.\n# creation dictionnaire\ninfos_labradoodle = {\n    \"poids\": \"13 à 16 kg\",\n    \"origine\": [\"États-Unis\", \"Canada\"]\n}\n\n# Ajout d'une paire clé-valeur\ninfos_labradoodle[\"nom_scientifique\"]=\"Canis lupus familiaris\"\n\n# Appel des valeurs associées à origine\nprint(infos_labradoodle[\"origine\"]) # [\"États-Unis\", \"Canada\"]\nprint(infos_labradoodle[\"origine\"][0]) # Canada\n\n# Suppression d'une association clé-valeur avec l'utilisation d'un mot clé del\ndel infos_labradoodle[\"nom_scientifique\"] # retrait de l'association nom_scientifique - Canis lupus familiaris\ndel infos_labradoodle[\"origine\"][0] # retrait de la première valeur associée à origine\n\n# Vérification de l'existence d'une clé\n\nprint(\"poids\" in infos_labradoodle) # True\nprint(\"race\" in infos_labradoodle) # False"
+  },
+  {
+    "objectID": "code/python_aide-memoire.html#méthodes-les-plus-courantes-associées-aux-listes",
+    "href": "code/python_aide-memoire.html#méthodes-les-plus-courantes-associées-aux-listes",
+    "title": "Aide-mémoire Python",
+    "section": "Méthodes les plus courantes associées aux listes",
+    "text": "Méthodes les plus courantes associées aux listes\n\n\n\n\n\n\n\nméthode\ndéfinition\n\n\n\n\nextend()\nAjoute plusieurs éléments à la fin\n\n\ninsert()\nInsère un élément à une position donnée\n\n\npop()\nSupprime et renvoie l’élément à une position donnée ou le dernier élément si aucun indice n’est spécifié\n\n\nindex()\nRenvoie la première occurrence de l’élément spécifié\n\n\ncount()\nRenvoie le nombre d’occurrences de l’élément spécifié\n\n\nreverse()\nInverse l’ordre des éléments\n\n\n\nlist=[el1, el2, el3]\nlist.append(el4) # el1, el2, el3, el4\nlist.reverse() # el4, el3, el2, el1\nCf documentation python sur les méthodes."
+  },
+  {
+    "objectID": "code/python_aide-memoire.html#méthodes-les-plus-courantes-associées-aux-dictionnaires",
+    "href": "code/python_aide-memoire.html#méthodes-les-plus-courantes-associées-aux-dictionnaires",
+    "title": "Aide-mémoire Python",
+    "section": "Méthodes les plus courantes associées aux dictionnaires",
+    "text": "Méthodes les plus courantes associées aux dictionnaires\n\n\n\n\n\n\n\nméthode\ndéfinition\n\n\n\n\nkeys()\n​​Retourne une vue sur les clés du dictionnaire\n\n\nvalues()\nRetourne une vue sur les valeurs du dictionnaire\n\n\nitems()\nRetourne une vue sur les couples (clé, valeur) du dictionnaire\n\n\nget(clé)\nRetourne la valeur associée à la clé spécifiée. Si la clé n’est pas présente dans le dictionnaire, retourne la valeur None\n\n\npop(clé)\nSupprime la clé spécifiée et retourne la valeur associée. Si la clé n’est pas présente dans le dictionnaire, retourne la valeur None\n\n\nclear()\nSupprime tous les éléments du dictionnaire"
+  },
+  {
+    "objectID": "code/python_aide-memoire.html#ifelifelse",
+    "href": "code/python_aide-memoire.html#ifelifelse",
+    "title": "Aide-mémoire Python",
+    "section": "if/elif/else",
+    "text": "if/elif/else\nLes instructions if/elif/else permettent de définir des conditions multiples. Le mot-clé elif vous permet d’ajouter autant de conditions que vous voulez. Vous devez ensuite terminer avec une instruction else. Les opérateurs logiques and, or, not peuvent être utilisés pour vérifier des conditions multiples au sein d’une même instructions.\nfruit = \"pomme\"\nif fruit==\"pomme\":\n    print(\"J'aime les pommes !\")\nelif fruit==\"banane\":\n    print(\"J'aime les bananes !\")\nelif fruit==\"orange\":\n    print(\"Les oranges sont bonnes pour la santé.\")\nelse :\n    print(\"Je ne connais pas ce fruit.\")\nAfin de rendre plus lisible ce genre de boucle, les match cases peuvent être utilisés.\nmatch fruit:\n    case \"pomme\":\n        print(\"J'aime les pommes !\")\n    case \"banane\":\n        print(\"Je n'aime pas les bananes.\")\n    case \"orange\":\n        print(\"Les oranges sont bonnes pour la santé.\")\n    case _:\n        print(\"Je ne connais pas ce fruit.\")"
+  },
+  {
+    "objectID": "code/python_aide-memoire.html#for",
+    "href": "code/python_aide-memoire.html#for",
+    "title": "Aide-mémoire Python",
+    "section": "for",
+    "text": "for\nraces_de_chien = [\"golden retriever\", \"chihuahua\", \"terrier\", \"carlin\"]\nfor chien in races_de_chien:\n    print(chien)"
+  },
+  {
+    "objectID": "code/python_aide-memoire.html#while",
+    "href": "code/python_aide-memoire.html#while",
+    "title": "Aide-mémoire Python",
+    "section": "while",
+    "text": "while\ncapacite_maximale = 10\ncapacite_actuelle = 3\nwhile capacite_actuelle &lt; capacite_maximale:\n    capacite_actuelle += 1"
+  },
+  {
+    "objectID": "code/python_aide-memoire.html#plusieurs-listes-en-même-temps",
+    "href": "code/python_aide-memoire.html#plusieurs-listes-en-même-temps",
+    "title": "Aide-mémoire Python",
+    "section": "Plusieurs listes en même temps",
+    "text": "Plusieurs listes en même temps\nS’il est nécessaire de traiter deux (ou plus) listes en même temps dans une boucle, il est possible d’utiliser la fonction zip().\nlistA = [\"pomme\", \"poire\", \"pêche\"]\nlistB = [2, 5, 1]\n\nfor val1, val2 in zip(listA, listB):\n    print(val2, '\\t',  val1)\n\n# 2        pomme\n# 5        poire\n# 1        pêche"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "QUARTO_grimmoire_job",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+  },
+  {
+    "objectID": "posts.html",
+    "href": "posts.html",
+    "title": "Job Blog",
+    "section": "",
+    "text": "Tableau de bord - Richesse spécifique\n\n\n\nEBV\n\n\ntableau de bord\n\n\n\nPremière étape de production d’un tableau de bord\n\n\n\nClaire-Cécile Juhasz\n\n\nMay 6, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nProjet EBVs\n\n\n\nEBV\n\n\nindicateurs\n\n\n\nDescription et définition des objectifs du projet\n\n\n\nClaire-Cécile Juhasz\n\n\nMay 6, 2024\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/2024-05-06_post/index.html",
+    "href": "posts/2024-05-06_post/index.html",
+    "title": "Projet EBVs",
+    "section": "",
+    "text": "Trying to create my first blog post."
+  },
+  {
+    "objectID": "posts/2024-05-06_post2/index.html",
+    "href": "posts/2024-05-06_post2/index.html",
+    "title": "Tableau de bord - Richesse spécifique",
+    "section": "",
+    "text": "La première étape a été effectuée à partir des données brutes de présence tirées de Atlas blablabla"
+  }
+]
