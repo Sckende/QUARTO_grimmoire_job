@@ -9,4 +9,8 @@ image: data_cube.jpg
 draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
 ---
 
-La première étape a été effectuée à partir des données brutes de présence tirées de Atlas blablabla
+Un premier [tableau de bord](https://coleo.biodiversite-quebec.ca/apps/QC_in_a_CUBE_Species_richness/) [![](https://p7.hiclipart.com/preview/551/770/413/github-pages-logo-repository-fork-github-thumbnail.jpg)](https://github.com/BiodiversiteQuebec/QC_in_a_CUBE_Species_richness) a été développé à partir:
+- des données brutes utilisées par Vincent Bellavance pour ses modèles de distribution (INLA). Ces données, issues d'`Atlas` ne concernent que les oiseaux nicheurs du Québec entre 1990 et 2019. 
+- la richesse spécifique a été obtenue pour différentes échelles spatiales: provinces naturelles, régions naturelles, niveaux physiogéographiques, districts écologiques et pixels 10x10 km.
+
+Une version de cartes de richesse spécifique ont été obtenue également à partir des carte de distribution de Vincent Bellavance pour l'années 2017.

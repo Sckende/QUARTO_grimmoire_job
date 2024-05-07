@@ -102,13 +102,20 @@
     "href": "posts/2024-05-06_post/index.html",
     "title": "Projet EBVs",
     "section": "",
-    "text": "Trying to create my first blog post."
+    "text": "L’objectif est de développer les EBVs superficie des aires de distribution des espèces et richesse spécifique à partir des résultats de Species Distribution models. Les EBVs doivent ensuite être organisées sous le format d’un cube avec les trois axes correspondant (idéalement) aux taxons, l’espace et le temps."
   },
   {
     "objectID": "posts/2024-05-06_post2/index.html",
     "href": "posts/2024-05-06_post2/index.html",
     "title": "Tableau de bord - Richesse spécifique",
     "section": "",
-    "text": "La première étape a été effectuée à partir des données brutes de présence tirées de Atlas blablabla"
+    "text": "Un premier tableau de bord  a été développé à partir: - des données brutes utilisées par Vincent Bellavance pour ses modèles de distribution (INLA). Ces données, issues d’Atlas ne concernent que les oiseaux nicheurs du Québec entre 1990 et 2019. - la richesse spécifique a été obtenue pour différentes échelles spatiales: provinces naturelles, régions naturelles, niveaux physiogéographiques, districts écologiques et pixels 10x10 km.\nUne version de cartes de richesse spécifique ont été obtenue également à partir des carte de distribution de Vincent Bellavance pour l’années 2017."
+  },
+  {
+    "objectID": "posts/2024-05-06_post/index.html#ressources-dintérêt",
+    "href": "posts/2024-05-06_post/index.html#ressources-dintérêt",
+    "title": "Projet EBVs",
+    "section": "Ressources d’intérêt",
+    "text": "Ressources d’intérêt\n\nprésentation sur les EBVs de Louis Quénée (chargé de mission à PatriNat - 2023)\n\n\n\nCf mendeley library"
   }
 ]
