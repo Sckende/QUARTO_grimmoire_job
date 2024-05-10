@@ -1,0 +1,21 @@
+---
+title: "Workflow pour production EBV richesse spécifique"
+description: "À partir des données brutes"
+author:
+  - name: Claire-Cécile Juhasz 
+date: 05-10-2024
+categories: [EBV] # self-defined categories
+image: depth.png
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+# Ressources nécessaires
+
+- [`duckdb`](https://duckdb.org/docs/guides/overview.html) & [`duckdbfs`](https://cboettig.github.io/duckdbfs/): packages R qui permettent d'ouvrir et de manipuler les fichiers geoparquets
+- [duckdb_spatial](https://github.com/duckdb/duckdb_spatial) - package en cours de développement - l'objectif est de travailler avec les données spatiales basées sur le modèle "Simple Feature Geometry"
+- [`ebvcube`](https://github.com/LuiseQuoss/ebvcube?tab=readme-ov-file): package R pour manipuler les EBVs stockées sous le format [`netCDF`](https://desktop.arcgis.com/en/arcmap/latest/manage-data/netcdf/fundamentals-of-netcdf-data-storage.htm) dans le [portail d'EBVs](https://portal.geobon.org/home) de GEOBON.
+
+# Étapes de réflexion
+- penser en terme de production de métrique (ici la richesse spécifique) à une résolution la plus fine possible. Le choix de cette résolution va dépendre de la précision des données. Cette précision va varier en fonction la data utilisées (par ex. occurrences brutes avec précision associées ou probabilité d'occurrence des modèles de distribution des espèces)
+- penser à l'optimisation de l'extraction de l'information d'Atlas sous format geoparquet avec des polygones storés dans un format geopackage - cf vignette de duckdbfs (extraction des points puis `mutate()` en objet `sf` --> voir le délai et si optimisable)
+- création d'un netCDF pour le résultat et pour le partage sur le portail de GEOBON - penser si nécessaire d'avoir un autre format plus efficace

@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Claire-Cécile Juhasz">
+<meta name="dcterms.date" content="2024-05-10">
+<meta name="description" content="À partir des données brutes">
 
-<title>QUARTO_grimmoire_job - Job Blog</title>
+<title>QUARTO_grimmoire_job - Workflow pour production EBV richesse spécifique</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +26,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -61,40 +62,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -104,7 +74,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">QUARTO_grimmoire_job</span>
     </a>
   </div>
@@ -115,19 +85,19 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html" rel="" target="">
+    <a class="nav-link" href="../../index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./code/code_langage.html" rel="" target="">
+    <a class="nav-link" href="../../code/code_langage.html" rel="" target="">
  <span class="menu-text">Aide-mémoire langages</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./posts.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="../../posts.html" rel="" target="">
  <span class="menu-text">Job Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html" rel="" target="">
+    <a class="nav-link" href="../../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -138,139 +108,81 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Workflow pour production EBV richesse spécifique</h1>
+                  <div>
+        <div class="description">
+          À partir des données brutes
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">EBV</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Claire-Cécile Juhasz </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">May 10, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(3)</span></div><div class="category" data-category="EBV">EBV <span class="quarto-category-count">(3)</span></div><div class="category" data-category="indicateurs">indicateurs <span class="quarto-category-count">(1)</span></div><div class="category" data-category="tableau de bord">tableau de bord <span class="quarto-category-count">(1)</span></div></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#ressources-nécessaires" id="toc-ressources-nécessaires" class="nav-link active" data-scroll-target="#ressources-nécessaires">Ressources nécessaires</a></li>
+  <li><a href="#étapes-de-réflexion" id="toc-étapes-de-réflexion" class="nav-link" data-scroll-target="#étapes-de-réflexion">Étapes de réflexion</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Job Blog</h1>
-</div>
-
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-</header>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
+<section id="ressources-nécessaires" class="level1">
+<h1>Ressources nécessaires</h1>
+<ul>
+<li><a href="https://duckdb.org/docs/guides/overview.html"><code>duckdb</code></a> &amp; <a href="https://cboettig.github.io/duckdbfs/"><code>duckdbfs</code></a>: packages R qui permettent d’ouvrir et de manipuler les fichiers geoparquets</li>
+<li><a href="https://github.com/duckdb/duckdb_spatial">duckdb_spatial</a> - package en cours de développement - l’objectif est de travailler avec les données spatiales basées sur le modèle “Simple Feature Geometry”</li>
+<li><a href="https://github.com/LuiseQuoss/ebvcube?tab=readme-ov-file"><code>ebvcube</code></a>: package R pour manipuler les EBVs stockées sous le format <a href="https://desktop.arcgis.com/en/arcmap/latest/manage-data/netcdf/fundamentals-of-netcdf-data-storage.htm"><code>netCDF</code></a> dans le <a href="https://portal.geobon.org/home">portail d’EBVs</a> de GEOBON.</li>
+</ul>
+</section>
+<section id="étapes-de-réflexion" class="level1">
+<h1>Étapes de réflexion</h1>
+<ul>
+<li>penser en terme de production de métrique (ici la richesse spécifique) à une résolution la plus fine possible. Le choix de cette résolution va dépendre de la précision des données. Cette précision va varier en fonction la data utilisées (par ex. occurrences brutes avec précision associées ou probabilité d’occurrence des modèles de distribution des espèces)</li>
+<li>penser à l’optimisation de l’extraction de l’information d’Atlas sous format geoparquet avec des polygones storés dans un format geopackage - cf vignette de duckdbfs (extraction des points puis <code>mutate()</code> en objet <code>sf</code> –&gt; voir le délai et si optimisable)</li>
+<li>création d’un netCDF pour le résultat et pour le partage sur le portail de GEOBON - penser si nécessaire d’avoir un autre format plus efficace</li>
+</ul>
 
-<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="EBV" data-listing-date-sort="1715313600000" data-listing-file-modified-sort="1715366052578" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
-<a href="./posts/2024-05-10_post/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img src="./posts/2024-05-10_post/depth.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Workflow pour production EBV richesse spécifique
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('EBV'); return false;">
-EBV
-</div>
-</div>
-<div class="card-text listing-description">
-À partir des données brutes
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-Claire-Cécile Juhasz
-</div>
-<div class="listing-date">
-May 10, 2024
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="1" data-categories="EBV,tableau de bord" data-listing-date-sort="1714968000000" data-listing-file-modified-sort="1715364578549" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
-<a href="./posts/2024-05-06_post2/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img src="./posts/2024-05-06_post2/data_cube.jpg" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Tableau de bord - Richesse spécifique
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('EBV'); return false;">
-EBV
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('tableau de bord'); return false;">
-tableau de bord
-</div>
-</div>
-<div class="card-text listing-description">
-Première étape de production d’un tableau de bord
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-Claire-Cécile Juhasz
-</div>
-<div class="listing-date">
-May 6, 2024
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="2" data-categories="EBV,indicateurs" data-listing-date-sort="1714968000000" data-listing-file-modified-sort="1715364578541" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1">
-<a href="./posts/2024-05-06_post/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img src="./posts/2024-05-06_post/data_cube.jpg" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Projet EBVs
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('EBV'); return false;">
-EBV
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('indicateurs'); return false;">
-indicateurs
-</div>
-</div>
-<div class="card-text listing-description">
-Description et définition des objectifs du projet
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-Claire-Cécile Juhasz
-</div>
-<div class="listing-date">
-May 6, 2024
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

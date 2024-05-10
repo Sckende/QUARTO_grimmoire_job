@@ -95,7 +95,7 @@
     "href": "posts.html",
     "title": "Job Blog",
     "section": "",
-    "text": "Tableau de bord - Richesse spécifique\n\n\n\nEBV\n\n\ntableau de bord\n\n\n\nPremière étape de production d’un tableau de bord\n\n\n\nClaire-Cécile Juhasz\n\n\nMay 6, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nProjet EBVs\n\n\n\nEBV\n\n\nindicateurs\n\n\n\nDescription et définition des objectifs du projet\n\n\n\nClaire-Cécile Juhasz\n\n\nMay 6, 2024\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Workflow pour production EBV richesse spécifique\n\n\n\nEBV\n\n\n\nÀ partir des données brutes\n\n\n\nClaire-Cécile Juhasz\n\n\nMay 10, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTableau de bord - Richesse spécifique\n\n\n\nEBV\n\n\ntableau de bord\n\n\n\nPremière étape de production d’un tableau de bord\n\n\n\nClaire-Cécile Juhasz\n\n\nMay 6, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nProjet EBVs\n\n\n\nEBV\n\n\nindicateurs\n\n\n\nDescription et définition des objectifs du projet\n\n\n\nClaire-Cécile Juhasz\n\n\nMay 6, 2024\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/2024-05-06_post/index.html",
@@ -117,5 +117,12 @@
     "title": "Projet EBVs",
     "section": "Ressources d’intérêt",
     "text": "Ressources d’intérêt\n\nprésentation sur les EBVs de Louis Quénée (chargé de mission à PatriNat - 2023)\n\n\n\nCf mendeley library"
+  },
+  {
+    "objectID": "posts/2024-05-10_post/index.html",
+    "href": "posts/2024-05-10_post/index.html",
+    "title": "Workflow pour production EBV richesse spécifique",
+    "section": "",
+    "text": "Ressources nécessaires\n\nduckdb & duckdbfs: packages R qui permettent d’ouvrir et de manipuler les fichiers geoparquets\nduckdb_spatial - package en cours de développement - l’objectif est de travailler avec les données spatiales basées sur le modèle “Simple Feature Geometry”\nebvcube: package R pour manipuler les EBVs stockées sous le format netCDF dans le portail d’EBVs de GEOBON.\n\n\n\nÉtapes de réflexion\n\npenser en terme de production de métrique (ici la richesse spécifique) à une résolution la plus fine possible. Le choix de cette résolution va dépendre de la précision des données. Cette précision va varier en fonction la data utilisées (par ex. occurrences brutes avec précision associées ou probabilité d’occurrence des modèles de distribution des espèces)\npenser à l’optimisation de l’extraction de l’information d’Atlas sous format geoparquet avec des polygones storés dans un format geopackage - cf vignette de duckdbfs (extraction des points puis mutate() en objet sf –&gt; voir le délai et si optimisable)\ncréation d’un netCDF pour le résultat et pour le partage sur le portail de GEOBON - penser si nécessaire d’avoir un autre format plus efficace"
   }
 ]
