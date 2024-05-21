@@ -1,0 +1,139 @@
+---
+title: "Workflow pour production EBV richesse spécifique"
+description: "À partir des données brutes"
+author:
+  - name: Claire-Cécile Juhasz 
+date: 05-10-2024
+categories: [EBV] # self-defined categories
+image: depth.png
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+# Ressources nécessaires
+
+- [`duckdb`](https://duckdb.org/docs/guides/overview.html) & [`duckdbfs`](https://cboettig.github.io/duckdbfs/): packages R qui permettent d'ouvrir et de manipuler les fichiers geoparquets
+- [duckdb_spatial](https://github.com/duckdb/duckdb_spatial) - package en cours de développement - l'objectif est de travailler avec les données spatiales basées sur le modèle "Simple Feature Geometry"
+- [`ebvcube`](https://github.com/LuiseQuoss/ebvcube?tab=readme-ov-file): package R pour manipuler les EBVs stockées sous le format [`netCDF`](https://desktop.arcgis.com/en/arcmap/latest/manage-data/netcdf/fundamentals-of-netcdf-data-storage.htm) dans le [portail d'EBVs](https://portal.geobon.org/home) de GEOBON.
+
+# Étapes de réflexion
+- penser en terme de production de métrique (ici la richesse spécifique) à une résolution la plus fine possible. Le choix de cette résolution va dépendre de la précision des données. Cette précision va varier en fonction la data utilisées (par ex. occurrences brutes avec précision associées ou probabilité d'occurrence des modèles de distribution des espèces)
+- penser à l'optimisation de l'extraction de l'information d'Atlas sous format geoparquet avec des polygones storés dans un format geopackage - cf vignette de duckdbfs (extraction des points puis `mutate()` en objet `sf` --> voir le délai et si optimisable)
+- création d'un netCDF pour le résultat et pour le partage sur le portail de GEOBON - penser si nécessaire d'avoir un autre format plus efficace
+
+```r
+library(dplyr)
+library(duckdb)
+library(duckdbfs)
+library(sf)
+library(stringr)
+
+# ---------------------------------#
+# access to the catalog
+base_url <- "https://object-arbutus.cloud.computecanada.ca/bq-io/atlas/parquet/"
+# version date of Atlas parquet
+parquet_date <- "2024-05-03"
+# function to retrieve Atlas remotly
+atlas_remote <- function(parquet_date, tblname = "atlas") {
+    file_name <- paste0("atlas_", parquet_date, ".parquet")
+    requireNamespace("duckdbfs")
+    duckdbfs::open_dataset(paste0(base_url, file_name), tblname = tblname)
+}
+atlas <- atlas_remote(parquet_date = parquet_date) |> select(valid_scientific_name, observation_value, longitude, latitude, year_obs, group_fr)
+atlas2 <- atlas |> mutate_at(c('longitude', 'latitude'), as.numeric)
+atlas_sf <- atlas |> mutate(geometry = ST_Point(longitude, latitude)) |> to_sf(crs = 4326)
+
+# ====> problème de conversion parquet en sf
+
+class(atlas)
+dim(atlas)
+colnames(atlas)
+st_crs(atlas)
+# Exploration
+View(atlas |> group_by(year_obs) |> summarize(cnt = count()) |> arrange(desc(year_obs)) |> collect())
+View(atlas |> group_by(within_quebec) |> summarize(cnt = count()) |> collect())
+View(atlas |> group_by(group_fr) |> summarize(cnt = count()) |> collect())
+
+# Queries
+dbGetQuery(atlas, "SELECT COUNT(*) FROM atlas")
+#### Code propre ####
+# => obj = unique gpkg for polygons of all spatial scale
+list_qc_spat <- list.files("/home/local/USHERBROOKE/juhc3201/BDQC-GEOBON/data/QUEBEC_regions/sf_CERQ_SHP", full.names = T)
+### pixel scale
+spatpix <- st_read(list_qc_spat[6])
+# ---> crs conversion
+spatpix <- st_transform(spatpix, crs = st_crs(4326)) # same crs than atlas
+# ---> variable homogeneisation
+names(spatpix)
+spatpix$scale <- "PIXEL10x10KM"
+spatpix$nom <- as.character(spatpix$ID)
+spatpix$name <- as.character(spatpix$ID)
+spatpix$area <- 10000 * 10000
+st_write(
+    spatpix,
+    "/home/local/USHERBROOKE/juhc3201/BDQC-GEOBON/data/QUEBEC_regions/sf_CERQ_SHP/QUEBEC_all_spat_scales.gpkg"
+)
+### other spatial scales
+scale <- c("FID01", "FID02", "FID03", "FID04")
+for (i in 1:length(scale)) {
+    print(paste0("----------------> ", scale[i]))
+    db <- st_read(list_qc_spat[i])
+    db <- st_transform(db, crs = st_crs(4326))
+    var <- c(
+        stringr::str_which(names(db), "NOM"),
+        stringr::str_which(names(db), "NAM"),
+        stringr::str_which(names(db), "Area"),
+        stringr::str_which(names(db), "geom")
+    )
+    db <- db[, c(1, var)]
+    print(names(db))
+    if (length(var) == 4) {
+        names(db)[1:4] <- c("scale", "nom", "name", "area")
+    } else {
+        names(db)[1:3] <- c("scale", "nom", "area")
+    }
+    db$scale <- scale[i]
+    print(head(db))
+    st_write(db,
+        "/home/local/USHERBROOKE/juhc3201/BDQC-GEOBON/data/QUEBEC_regions/sf_CERQ_SHP/QUEBEC_all_spat_scales.gpkg",
+        append = TRUE
+    )
+}
+all_spat <- st_read("/home/local/USHERBROOKE/juhc3201/BDQC-GEOBON/data/QUEBEC_regions/sf_CERQ_SHP/QUEBEC_all_spat_scales.gpkg")
+table(all_spat$scale)
+head(all_spat)
+### test for 2005 ###
+# Coordonnates in lat/lon epsg
+atlas2005 <- atlas |> filter(year_obs == 2005 & within_quebec == "t")
+View(atlas2005 |> group_by(group_en) |> summarize(cnt = count()) |> arrange(group_en) |> collect())
+
+test_sf <- atlas2005 |> mutate(geometry = st_point(longitude, latitude)) |> to_sf(crs = 4326)
+
+# List of different spatial scale of Quebec
+list_qc_spat <- list.files("/home/local/USHERBROOKE/juhc3201/BDQC-GEOBON/data/QUEBEC_regions/sf_CERQ_SHP", full.names = T)
+spat1 <- st_read(list_qc_spat[1])
+spat2 <- st_read(list_qc_spat[2])
+spat6 <- st_read(list_qc_spat[6])
+st_crs(spat1) == st_crs(spat6)
+names(spat1) == names(spat2)
+names(spat1)
+names(spat2)
+#### => obj = creation of a single spatial geopackage ####
+# treatment of pixel scale data
+# ---> crs conversion
+spat6_trans <- st_transform(spat6, crs = st_crs(spat1))
+# ---> variable creation
+names(spat6_trans)
+spat6_trans$scale <- "PIXEL"
+spat6_trans$nom <- as.character(spat6_trans$ID)
+spat6_trans$name <- as.character(spat6_trans$ID)
+spat6_trans$area <- 10000 * 10000
+spat6bis <- spat6_trans[, -1]
+###
+spat1bis <- spat1[, c(1, 3, 4, 7, 8)]
+names(spat1bis) <- c("scale", "nom", "name", "area", "geom")
+spat1bis$scale <- "FID01"
+gpkg_test <- st_write(spat1bis,
+    "/home/local/USHERBROOKE/juhc3201/Desktop/file_gpkg_test.gpkg",
+    append = TRUE
+)
+```
