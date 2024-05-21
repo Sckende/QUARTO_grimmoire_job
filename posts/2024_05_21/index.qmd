@@ -1,3 +1,14 @@
+---
+title: "Analyse et visualisation en Python"
+description: "École printemps Calcul Québec - Bases de bash et grappes de calcul"
+author:
+  - name: Claire-Cécile Juhasz 
+date: 05-21-2024
+categories: [formation, école d'été] # self-defined categories
+image: data_cube.jpg
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
 # École d'été - Analyses et visualisation en Python
 
 ## Day 1
