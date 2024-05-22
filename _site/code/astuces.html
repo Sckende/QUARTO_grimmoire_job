@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>QUARTO_grimmoire_job - 🐚 Aide-mémoire Ubuntu &amp; bash</title>
+<title>QUARTO_grimmoire_job - 💡 Astuces</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -108,7 +142,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../code/ubuntu_bash.html">🐚 Aide-mémoire Ubuntu &amp; bash</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../code/astuces.html">💡 Astuces</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -129,18 +163,18 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../code/python_aide-memoire.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">🐍 Aide-mémoire Python</span></a>
+ <span class="menu-text">Aide-mémoire Python</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../code/ubuntu_bash.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">🐚 Aide-mémoire Ubuntu &amp; bash</span></a>
+  <a href="../code/ubuntu_bash.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Aide-mémoire Ubuntu &amp; bash</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../code/astuces.html" class="sidebar-item-text sidebar-link">
+  <a href="../code/astuces.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">💡 Astuces</span></a>
   </div>
 </li>
@@ -150,14 +184,23 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#grappes-de-calcul---alliance-canada" id="toc-grappes-de-calcul---alliance-canada" class="nav-link active" data-scroll-target="#grappes-de-calcul---alliance-canada">Grappes de calcul - Alliance Canada</a>
+  <ul class="collapse">
+  <li><a href="#récupérer-les-tâches-échouées-et-les-relancer" id="toc-récupérer-les-tâches-échouées-et-les-relancer" class="nav-link" data-scroll-target="#récupérer-les-tâches-échouées-et-les-relancer">Récupérer les tâches échouées et les relancer</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">🐚 Aide-mémoire Ubuntu &amp; bash</h1>
+<h1 class="title">💡 Astuces</h1>
 </div>
 
 
@@ -172,224 +215,49 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<table class="table">
-<colgroup>
-<col style="width: 32%">
-<col style="width: 57%">
-<col style="width: 2%">
-<col style="width: 7%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>commande [paramètres] [arguments]</th>
-<th>Rôle</th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>gnome-system-monitor</td>
-<td>équivalent de ‘task manager’</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>chown</td>
-<td>changes the owner of the file or directory specified by the File or Directory parameter to the user specified by the Owner parameter</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>ll</td>
-<td>alias pour ls -l</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>‘ls -1 | wc -l’</td>
-<td>dénombre quantité de files</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>history</td>
-<td>historique des commandes</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>fc -l -xx</td>
-<td>les xx dernières commandes effectuées</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>fc -s xx</td>
-<td>relance la commande numéro xx</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>fc -s fc=ls xx</td>
-<td>relance la commande xx en remplaçant</td>
-<td>fc par ls</td>
-<td>aller début de la ligne</td>
-</tr>
-<tr class="odd">
-<td>ctrl + a</td>
-<td>aller fin ligne</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>ctrl + e</td>
-<td>cleaner le termine</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>ctrl + l</td>
-<td>effacer la ligne jusqu’au début</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>ctrl + k</td>
-<td>effacer la ligne jusqu’à la fin</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>touch <file1> <file2> <file3></file3></file2></file1></td>
-<td>create one or several files</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>vi <file></file></td>
-<td>i for insert</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>nano</td>
-<td>read, modify &amp; save a file - There are two modes - cf RedHat Vi infoseasier!!!</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>mkdir</td>
-<td>création d’un dossier</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>rmdir</td>
-<td>efface un dossier</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>rm <file></file></td>
-<td>effacer un fichier</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>rm -rf <folder></folder></td>
-<td>effacer un dossier</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>realpath <file folder=""> ou pwd</file></td>
-<td>chemin absolu</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>echo</td>
-<td>affiche du texte</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>npm</td>
-<td>library and registry for JavaScript software packages. npm also has command-line tools to help you install the different packages and manage their dependencies</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>zip -r &lt;file.zip&gt; <file foldertozip=""></file></td>
-<td>zip un dossier</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>sed -i ‘s/old-text/new-text/g’ input.txt</td>
-<td>find and replace in file(s) cf docu</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>sed -s ‘2!d’ *.txt &gt; test_cat2.txt</td>
-<td>concatenate second line of several files</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>sudo dpkg -i xxx.deb</td>
-<td>installation d’un package téléchargé</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>quarto render xxx.qmd</td>
-<td>compilation en local d’un fichier quarto</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>[ctrl][Alt][f5]</td>
-<td>mode tty</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>[alt][F1]</td>
-<td>exit mode tty</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>mv ex.txt new.txt</td>
-<td>renommer un fichier</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>scp (-r) file/folder_to_send targeted_folder</td>
-<td>-r is for recursive s’il s’agit d’un dossier à envoyer. exemple pour calcul Canada scp ccjuhasz@narval.computecanada.ca:projects/def-dgravel/ccjuhasz/sf_converted_occ_pres_only2.zip</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>ogrinfo -sql “CREATE INDEX index_name ON table_name (column1, column2,columnN…)” my_geopackage.gpkg</td>
-<td>Index creation for sql request to geopackage file</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>ogrinfo file.gpkg</td>
-<td>give the name of the database</td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<section id="grappes-de-calcul---alliance-canada" class="level1">
+<h1>Grappes de calcul - Alliance Canada</h1>
+<section id="récupérer-les-tâches-échouées-et-les-relancer" class="level2">
+<h2 class="anchored" data-anchor-id="récupérer-les-tâches-échouées-et-les-relancer">Récupérer les tâches échouées et les relancer</h2>
+<p>Il s’agit d’une solution “à la mitaine” qui peut être remplacée par l’utilisation de l’outil <a href="https://docs.alliancecan.ca/wiki/META-Farm">META-Farm</a> de l’Alliance.</p>
+<p><u>Mise en contexte</u></p>
+<p>On veut calculer le PCI pour plusieurs espèces. Initialement le array range allait de 1-243, ce qui correspondait aux 243 espèces. Après le premier lancement du script, 33 espèces (ou tâches) avaient échouées:</p>
+<ul>
+<li>Récupérer le statut des tâches (<code>sjobexitmod</code>)</li>
+<li>Récupérer les lignes qui présentent le pattern <code>FAILED</code> (<code>grep</code>)</li>
+<li>Récupérer la première colonnes qui contient <code>jobId_taskId</code> (<code>awk</code>)</li>
+<li>Couper les strings au niveau de <code>_</code> et récupérer la deuxième partie de string qui correspond à la tâche ID (<code>cut</code>)</li>
+<li>Enregistrer la sortie dans un fichier (<code>&gt;</code>)</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sjobexitmod</span> <span class="at">-l</span> jobId <span class="op">&gt;</span> sjobexitmod_status.txt</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-e</span> <span class="st">'FAILED'</span> sjobexitmod_status.txt <span class="kw">|</span> <span class="fu">awk</span> <span class="st">'{print $1}'</span> <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d</span> <span class="st">'_'</span> <span class="at">-f</span> 2 <span class="op">&gt;</span> failed_task_id.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Dans le fichier bash envoyé à l’ordonnanceur slurm, créer une variable shell qui pourra être importé dans l’environnement <code>R</code>.</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --account=def-dgravel</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --array=1-33</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH -t 01:00:00</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --mem-per-cpu=50GB</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --cpus-per-task=1</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --job-name=Summer_school_test</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --mail-user=juhc3201@usherbrooke.ca</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --mail-type=ALL</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$SLURM_ARRAY_TASK_ID</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="va">FAILED_TASK_ID</span><span class="op">=</span><span class="va">$(</span><span class="fu">sed</span> <span class="at">-n</span> <span class="st">"</span><span class="va">${SLURM_ARRAY_TASK_ID}</span><span class="st">p"</span> failed_task_id.txt<span class="va">)</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$FAILED_TASK_ID</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load StdEnv/2023 gcc/12.3 gdal/3.7.2 arrow/15.0.1 udunits/2.2.28 r/4.4.0</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> pci.r</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>failed_task_id <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="fu">Sys.getenv</span>(<span class="st">"FAILED_TASK_ID"</span>)) <span class="co">#récupère la variable shell FAILED_TASK_ID</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ici la taille de l’array correspond au nombre de tâches qui ont échoué. <code>sed</code> permet de récupérer la valeur dans le fichier <code>failed_task_id.txt</code> qui correspond au numéro du <code>SLURM_ARRAY_TASK_ID</code>. Et cette <code>task_id</code> est utilisée pour indexer le nom de l’espèce qui manque (dans cet exemple).</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

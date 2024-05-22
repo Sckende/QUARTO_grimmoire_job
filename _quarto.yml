@@ -23,12 +23,10 @@ website:
         - code/code_langage.qmd
         - code/python_aide-memoire.md
         - code/ubuntu_bash.md
+        - code/astuces.md
 
 format:
   html:
     theme: solar
     css: styles.css
     toc: true
-
-
-
