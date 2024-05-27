@@ -5,7 +5,7 @@ author:
   - name: Claire-Cécile Juhasz 
 date: 05-06-2024
 categories: [EBV, tableau de bord] # self-defined categories
-image: data_cube.jpg
+image: https://t3.ftcdn.net/jpg/05/61/12/98/360_F_561129847_uvTeNrJfhG1gCBLlYGqVsfQRwvv0oUyn.jpg
 draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
 ---
 
