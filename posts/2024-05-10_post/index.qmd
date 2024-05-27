@@ -18,7 +18,36 @@ draft: false # setting this to `true` will prevent your post from appearing on y
 # Étapes de réflexion
 - penser en terme de production de métrique (ici la richesse spécifique) à une résolution la plus fine possible. Le choix de cette résolution va dépendre de la précision des données. Cette précision va varier en fonction la data utilisées (par ex. occurrences brutes avec précision associées ou probabilité d'occurrence des modèles de distribution des espèces)
 - penser à l'optimisation de l'extraction de l'information d'Atlas sous format geoparquet avec des polygones storés dans un format geopackage - cf vignette de duckdbfs (extraction des points puis `mutate()` en objet `sf` --> voir le délai et si optimisable)
-- création d'un netCDF pour le résultat et pour le partage sur le portail de GEOBON - penser si nécessaire d'avoir un autre format plus efficace
+- création d'un netCDF pour le résultat et pour le partage sur le portail de GEOBON - penser si nécessaire d'avoir un autre format plus efficace  
+
+# TO LIST  
+## Raw data
+---
+[ ] Utilisation de toutes les données dans Atlas  
+[ ] Division par groupes taxonomiques pour la visualisation - catégories dans Atlas  
+[ ] Division par ecozones (?)  
+<img src="https://www.statcan.gc.ca/sites/default/files/images/environmental-map-eng.gif" width=100%>  
+[ ] Division par ecorégions (?)  
+[<img src="https://upload.wikimedia.org/wikipedia/commons/5/58/Terrestrial_ecoregions_CAN.svg" width=100%>](https://en.wikipedia.org/wiki/List_of_ecoregions_in_Canada_%28WWF%29)
+
+
+|nom|nom|nom|
+|---|---|---|
+|Algues|Amphibiens|Angiospermes|
+|Arthropodes|Autres angiospermes|Autres invertébrés|
+|Autres plantes|Autres taxons|Bryophytes|
+|Céphalocordées (org. marins)|Conifères|Cryptogames vasculaires|
+|Mammifères|Mycètes|Oiseaux|
+|Poissons|Reptiles|Tuniciers (inv. marins)|
+
+## SDM data
+
+[ ] Étudier les méthodes de thresholding  
+[ ] Continuer les calculs à partir des cartes de Vincent car actuellement juste pour 2017  
+
+## Synthèse
+
+[ ] Voir pour produire les figures de synthèse - cf discussion avec Dom
 
 ```r
 library(dplyr)

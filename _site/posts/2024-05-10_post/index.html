@@ -188,6 +188,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#ressources-nécessaires" id="toc-ressources-nécessaires" class="nav-link active" data-scroll-target="#ressources-nécessaires">Ressources nécessaires</a></li>
   <li><a href="#étapes-de-réflexion" id="toc-étapes-de-réflexion" class="nav-link" data-scroll-target="#étapes-de-réflexion">Étapes de réflexion</a></li>
+  <li><a href="#to-list" id="toc-to-list" class="nav-link" data-scroll-target="#to-list">TO LIST</a>
+  <ul class="collapse">
+  <li><a href="#raw-data" id="toc-raw-data" class="nav-link" data-scroll-target="#raw-data">Raw data</a></li>
+  <li><a href="#sdm-data" id="toc-sdm-data" class="nav-link" data-scroll-target="#sdm-data">SDM data</a></li>
+  <li><a href="#synthèse" id="toc-synthèse" class="nav-link" data-scroll-target="#synthèse">Synthèse</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -212,6 +218,68 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>penser à l’optimisation de l’extraction de l’information d’Atlas sous format geoparquet avec des polygones storés dans un format geopackage - cf vignette de duckdbfs (extraction des points puis <code>mutate()</code> en objet <code>sf</code> –&gt; voir le délai et si optimisable)</li>
 <li>création d’un netCDF pour le résultat et pour le partage sur le portail de GEOBON - penser si nécessaire d’avoir un autre format plus efficace</li>
 </ul>
+</section>
+<section id="to-list" class="level1">
+<h1>TO LIST</h1>
+<section id="raw-data" class="level2">
+<h2 class="anchored" data-anchor-id="raw-data">Raw data</h2>
+<hr>
+<p>[ ] Utilisation de toutes les données dans Atlas<br>
+[ ] Division par groupes taxonomiques pour la visualisation - catégories dans Atlas<br>
+[ ] Division par ecozones (?)<br>
+<img src="https://www.statcan.gc.ca/sites/default/files/images/environmental-map-eng.gif" width="100%"><br>
+[ ] Division par ecorégions (?)<br>
+<a href="https://en.wikipedia.org/wiki/List_of_ecoregions_in_Canada_%28WWF%29"><img src="https://upload.wikimedia.org/wikipedia/commons/5/58/Terrestrial_ecoregions_CAN.svg" width="100%"></a></p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>nom</th>
+<th>nom</th>
+<th>nom</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Algues</td>
+<td>Amphibiens</td>
+<td>Angiospermes</td>
+</tr>
+<tr class="even">
+<td>Arthropodes</td>
+<td>Autres angiospermes</td>
+<td>Autres invertébrés</td>
+</tr>
+<tr class="odd">
+<td>Autres plantes</td>
+<td>Autres taxons</td>
+<td>Bryophytes</td>
+</tr>
+<tr class="even">
+<td>Céphalocordées (org. marins)</td>
+<td>Conifères</td>
+<td>Cryptogames vasculaires</td>
+</tr>
+<tr class="odd">
+<td>Mammifères</td>
+<td>Mycètes</td>
+<td>Oiseaux</td>
+</tr>
+<tr class="even">
+<td>Poissons</td>
+<td>Reptiles</td>
+<td>Tuniciers (inv. marins)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sdm-data" class="level2">
+<h2 class="anchored" data-anchor-id="sdm-data">SDM data</h2>
+<p>[ ] Étudier les méthodes de thresholding<br>
+[ ] Continuer les calculs à partir des cartes de Vincent car actuellement juste pour 2017</p>
+</section>
+<section id="synthèse" class="level2">
+<h2 class="anchored" data-anchor-id="synthèse">Synthèse</h2>
+<p>[ ] Voir pour produire les figures de synthèse - cf discussion avec Dom</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(duckdb)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(duckdbfs)</span>
@@ -329,6 +397,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
