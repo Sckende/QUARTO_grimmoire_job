@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Claire-Cécile Juhasz">
+<meta name="dcterms.date" content="2024-05-28">
+<meta name="description" content="À partir des données brutes">
 
-<title>QUARTO_grimmoire_job - 🐚 Aide-mémoire Ubuntu &amp; bash</title>
+<title>QUARTO_grimmoire_job - Workflow pour production EBV richesse spécifique</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +26,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -61,17 +64,17 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-sidebar docked nav-fixed">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">QUARTO_grimmoire_job</span>
     </a>
   </div>
@@ -82,19 +85,19 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html" rel="" target="">
+    <a class="nav-link" href="../../index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../code/code_langage.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="../../code/code_langage.html" rel="" target="">
  <span class="menu-text">Aide-mémoire langages</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../posts.html" rel="" target="">
+    <a class="nav-link" href="../../posts.html" rel="" target="">
  <span class="menu-text">Job Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../about.html" rel="" target="">
+    <a class="nav-link" href="../../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -103,299 +106,82 @@ ul.task-list li input[type="checkbox"] {
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../code/ubuntu_bash.html">🐚 Aide-mémoire Ubuntu &amp; bash</a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-    </div>
-  </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
-<!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../code/code_langage.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Généralités</span></a>
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Workflow pour production EBV richesse spécifique</h1>
+                  <div>
+        <div class="description">
+          À partir des données brutes
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">EBV</div>
+              </div>
+                  </div>
   </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../code/docker.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">🐋 Docker</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../code/python_aide-memoire.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">🐍 Aide-mémoire Python</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../code/ubuntu_bash.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">🐚 Aide-mémoire Ubuntu &amp; bash</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../code/astuces.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">💡 Astuces</span></a>
-  </div>
-</li>
-    </ul>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Claire-Cécile Juhasz </p>
+            </div>
     </div>
-</nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">May 28, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#objectif" id="toc-objectif" class="nav-link active" data-scroll-target="#objectif">Objectif</a></li>
+  <li><a href="#étapes" id="toc-étapes" class="nav-link" data-scroll-target="#étapes">Étapes</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">🐚 Aide-mémoire Ubuntu &amp; bash</h1>
-</div>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
-
-</header>
-
-<table class="table">
-<colgroup>
-<col style="width: 32%">
-<col style="width: 57%">
-<col style="width: 2%">
-<col style="width: 7%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>commande [paramètres] [arguments]</th>
-<th>Rôle</th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>gnome-system-monitor</td>
-<td>équivalent de ‘task manager’</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>chown</td>
-<td>changes the owner of the file or directory specified by the File or Directory parameter to the user specified by the Owner parameter</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>ll</td>
-<td>alias pour ls -l</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>‘ls -1 | wc -l’</td>
-<td>dénombre quantité de files</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>history</td>
-<td>historique des commandes</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>fc -l -xx</td>
-<td>les xx dernières commandes effectuées</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>fc -s xx</td>
-<td>relance la commande numéro xx</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>fc -s fc=ls xx</td>
-<td>relance la commande xx en remplaçant</td>
-<td>fc par ls</td>
-<td>aller début de la ligne</td>
-</tr>
-<tr class="odd">
-<td>ctrl + a</td>
-<td>aller fin ligne</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>ctrl + e</td>
-<td>cleaner le termine</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>ctrl + l</td>
-<td>effacer la ligne jusqu’au début</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>ctrl + k</td>
-<td>effacer la ligne jusqu’à la fin</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>touch <file1> <file2> <file3></file3></file2></file1></td>
-<td>create one or several files</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>vi <file></file></td>
-<td>i for insert</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>nano</td>
-<td>read, modify &amp; save a file - There are two modes - cf RedHat Vi infoseasier!!!</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>mkdir</td>
-<td>création d’un dossier</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>rmdir</td>
-<td>efface un dossier</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>rm <file></file></td>
-<td>effacer un fichier</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>rm -rf <folder></folder></td>
-<td>effacer un dossier</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>realpath <file folder=""> ou pwd</file></td>
-<td>chemin absolu</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>echo</td>
-<td>affiche du texte</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>npm</td>
-<td>library and registry for JavaScript software packages. npm also has command-line tools to help you install the different packages and manage their dependencies</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>zip -r &lt;file.zip&gt; <file foldertozip=""></file></td>
-<td>zip un dossier</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>sed -i ‘s/old-text/new-text/g’ input.txt</td>
-<td>find and replace in file(s) cf docu</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>sed -s ‘2!d’ *.txt &gt; test_cat2.txt</td>
-<td>concatenate second line of several files</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>sudo dpkg -i xxx.deb</td>
-<td>installation d’un package téléchargé</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>quarto render xxx.qmd</td>
-<td>compilation en local d’un fichier quarto</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>[ctrl][Alt][f5]</td>
-<td>mode tty</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>[alt][F1]</td>
-<td>exit mode tty</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>mv ex.txt new.txt</td>
-<td>renommer un fichier</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>scp (-r) file/folder_to_send targeted_folder</td>
-<td>-r is for recursive s’il s’agit d’un dossier à envoyer. exemple pour calcul Canada scp ccjuhasz@narval.computecanada.ca:projects/def-dgravel/ccjuhasz/sf_converted_occ_pres_only2.zip</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>ogrinfo -sql “CREATE INDEX index_name ON table_name (column1, column2,columnN…)” my_geopackage.gpkg</td>
-<td>Index creation for sql request to geopackage file</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>ogrinfo file.gpkg</td>
-<td>give the name of the database</td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<section id="objectif" class="level1">
+<h1>Objectif</h1>
+<p>Obtenir la RS à partir des données brutes d’<code>Atlas</code> avec les informations suivantes: liste des espèces présentes, groupe taxonomique et échelles spatiales variées</p>
+</section>
+<section id="étapes" class="level1">
+<h1>Étapes</h1>
+<p>[ ] Grille à 1x1km de résolution à l’échelle du Qc (choix de la résolution basée sur un compromis par rapport aux erreurs associées aux occurrences)<br>
+[ ] pour chaque pixel, informations nécessaires: geom, appartenance aux différents niveaux spatiales avec ID unique (NIV_01, NIV_02, NIV_03, NIV_04, ecoregions et ecozones)</p>
+<center>
+<img src="wf_rs_step1.png" width="90%">
+</center>
+<hr>
+<p>[ ] Extraction des espèces uniques dans chaque pixel<br>
+[ ] Traitement secondaire des données pour obtenir valeur de RS<br>
+[ ] Visualisation par carte et graphiques (cf discussion Dom)</p>
+<p><img src="Dom_discu1.jpg" width="50%"><img src="Dom_discu2.jpg" width="50%"></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
