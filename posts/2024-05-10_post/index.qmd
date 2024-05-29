@@ -44,6 +44,7 @@ draft: false # setting this to `true` will prevent your post from appearing on y
 
 [ ] Étudier les méthodes de thresholding  
 [ ] Continuer les calculs à partir des cartes de Vincent car actuellement juste pour 2017  
+[ ] Garder la résolution des cartes de sortie de modèles pour la résolution la plus basse  
 
 ## Synthèse
 

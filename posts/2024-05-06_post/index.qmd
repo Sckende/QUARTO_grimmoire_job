@@ -11,7 +11,7 @@ draft: false # setting this to `true` will prevent your post from appearing on y
 
 L'objectif est de développer les EBVs **superficie des aires de distribution** des espèces et **richesse spécifique** à partir des résultats de Species Distribution models. Les EBVs doivent ensuite être organisées sous le format d'un cube avec les trois axes correspondant (idéalement) aux taxons, l'espace et le temps. 
 
-<center><img src="jetz_et_al_2019_fig2.png" width=110%</center>
+<center><img src="jetz_et_al_2019_fig2.png" width=110%></center>
 
 ## Ressources d'intérêt
 - présentation sur les EBVs de Louis Quénée (chargé de mission à PatriNat - 2023)  
