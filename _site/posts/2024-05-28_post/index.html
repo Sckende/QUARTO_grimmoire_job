@@ -154,6 +154,11 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#objectif" id="toc-objectif" class="nav-link active" data-scroll-target="#objectif">Objectif</a></li>
   <li><a href="#étapes" id="toc-étapes" class="nav-link" data-scroll-target="#étapes">Étapes</a></li>
+  <li><a href="#documentationinformation" id="toc-documentationinformation" class="nav-link" data-scroll-target="#documentationinformation">Documentation/information</a>
+  <ul class="collapse">
+  <li><a href="#cadre-écologique-national-pour-le-canada" id="toc-cadre-écologique-national-pour-le-canada" class="nav-link" data-scroll-target="#cadre-écologique-national-pour-le-canada">Cadre écologique national pour le Canada</a></li>
+  <li><a href="#traitement-des-données" id="toc-traitement-des-données" class="nav-link" data-scroll-target="#traitement-des-données">Traitement des données</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -179,8 +184,55 @@ ul.task-list li input[type="checkbox"] {
 [ ] Traitement secondaire des données pour obtenir valeur de RS<br>
 [ ] Visualisation par carte et graphiques (cf discussion Dom)</p>
 <p><img src="Dom_discu1.jpg" width="50%"><img src="Dom_discu2.jpg" width="50%"></p>
+</section>
+<section id="documentationinformation" class="level1">
+<h1>Documentation/information</h1>
+<section id="cadre-écologique-national-pour-le-canada" class="level2">
+<h2 class="anchored" data-anchor-id="cadre-écologique-national-pour-le-canada"><a href="https://sis.agr.gc.ca/siscan/nsdb/ecostrat/1999report/framework.html">Cadre écologique national pour le Canada</a></h2>
+<table class="table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Niveaux</th>
+<th>Nombred’unités</th>
+<th>Définition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Écozones</td>
+<td>15</td>
+<td>Au sommet de la hiérarchie, les écozones dessinent la mosaïque écologique du Canada à l’échelle sous-continentale. L’écozone est une région de la surface terrestre représentative de grandes unités écologiques très généralisées caractérisées par des facteurs biotiques et abiotiques en interaction et adaptation constantes. Le Canada est divisé en 15 écozones terrestres.</td>
+</tr>
+<tr class="even">
+<td>Écoprovinces</td>
+<td>53</td>
+<td>Subdivision d’une écozone caractérisée par des assemblages distinctifs de structures et de formes de relief, de faune et de flore, d’hydrologie, de sol et de macroclimat. Par exemple, l’écoprovince de Terre-Neuve (no 6.4) est l’une des six écoprovinces comprises dans l’écozone du Bouclier boréal.</td>
+</tr>
+<tr class="odd">
+<td>Écorégions</td>
+<td>194</td>
+<td>Subdivision d’une écoprovince caractérisée par des facteurs écologiques régionaux particuliers en matière de climat, de physiographie, de végétation, de sols, d’eau et de faune. Par exemple, l’écorégion des Landes maritimes (no 114) est l’une des neuf écorégions comprises dans l’écoprovince de Terre-Neuve.</td>
+</tr>
+<tr class="even">
+<td>Écodistricts</td>
+<td>1021</td>
+<td>Subdivision d’une écorégion caractérisée par des assemblages particuliers en matière de relief, de formes de terrain, de géologie, de sols, de végétation, de plans d’eau et de faune. Par exemple, l’écodistrict du lac Jeddore (no 473) est l’un des cinq écodistricts compris dans l’écorégion des Landes maritimes.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="traitement-des-données" class="level2">
+<h2 class="anchored" data-anchor-id="traitement-des-données">Traitement des données</h2>
+<p>💡 lors de la sélection des pixels de 1x1km du Qc dans les zones, ceux qui sont à cheval sur la limite d’un polygone sont sélectionnés plusieurs fois.<br>
+💡 autre possibilité =&gt; rasterizer toutes les occurrences par années par espèces pour ensuite aller chercher l’information par pixel avec un subset.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

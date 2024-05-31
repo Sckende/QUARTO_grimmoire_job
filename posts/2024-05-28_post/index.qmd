@@ -26,4 +26,18 @@ Obtenir la RS à partir des données brutes d'`Atlas` avec les informations suiv
 [ ] Traitement secondaire des données pour obtenir valeur de RS  
 [ ] Visualisation par carte et graphiques (cf discussion Dom)  
 
-<img src="Dom_discu1.jpg" width=50%><img src="Dom_discu2.jpg" width=50%>
+<img src="Dom_discu1.jpg" width=50%><img src="Dom_discu2.jpg" width=50%>   
+
+# Documentation/information
+## [Cadre écologique national pour le Canada](https://sis.agr.gc.ca/siscan/nsdb/ecostrat/1999report/framework.html)
+
+|Niveaux|Nombred'unités|Définition|
+|---|---|---|
+|Écozones|15|Au sommet de la hiérarchie, les écozones dessinent la mosaïque écologique du Canada à l'échelle sous-continentale. L'écozone est une région de la surface terrestre représentative de grandes unités écologiques très généralisées caractérisées par des facteurs biotiques et abiotiques en interaction et adaptation constantes. Le Canada est divisé en 15 écozones terrestres.|
+|Écoprovinces|53|Subdivision d'une écozone caractérisée par des assemblages distinctifs de structures et de formes de relief, de faune et de flore, d'hydrologie, de sol et de macroclimat. Par exemple, l'écoprovince de Terre-Neuve (no 6.4) est l'une des six écoprovinces comprises dans l'écozone du Bouclier boréal.|
+|Écorégions|194|Subdivision d'une écoprovince caractérisée par des facteurs écologiques régionaux particuliers en matière de climat, de physiographie, de végétation, de sols, d'eau et de faune. Par exemple, l'écorégion des Landes maritimes (no 114) est l'une des neuf écorégions comprises dans l'écoprovince de Terre-Neuve. |
+|Écodistricts|1021|Subdivision d'une écorégion caractérisée par des assemblages particuliers en matière de relief, de formes de terrain, de géologie, de sols, de végétation, de plans d'eau et de faune. Par exemple, l'écodistrict du lac Jeddore (no 473) est l'un des cinq écodistricts compris dans l'écorégion des Landes maritimes.|
+ 
+## Traitement des données
+💡 lors de la sélection des pixels de 1x1km du Qc dans les zones, ceux qui sont à cheval sur la limite d'un polygone sont sélectionnés plusieurs fois.  
+💡 autre possibilité => rasterizer toutes les occurrences par années par espèces pour ensuite aller chercher l'information par pixel avec un subset.  
