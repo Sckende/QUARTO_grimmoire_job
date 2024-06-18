@@ -1,0 +1,23 @@
+---
+title: "Mise à jour site internet IeLab"
+description: ""
+author:
+  - name: Claire-Cécile Juhasz 
+date: 06-18-2024
+categories: [site internet lab] # self-defined categories
+image: ielab_logo_short.png
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+# Objectif
+
+Mise à jour du site internet  
+
+# Étapes
+
+Le **18 juin**, rencontre avec Yannick Bergeron. Le service espace web va être mise à jour d'ici quelques années et supportera les sites internets créés via [wordpress](https://wordpress.com/fr/) ou de type statique PHP. EN attendant, le site du labo peut être hébergé sur github et redirigé vers l'adresse actuel via un html file dans service web (Yannick peut aider pour la création de ce fichier, suffit juste de lui envoyer le lien de la GHpage).
+
+# Ressources
+
+[Hugo](https://gohugo.io/)  
+[Hugo workshop](https://github.com/bios2/Hugo-training-workshop)
