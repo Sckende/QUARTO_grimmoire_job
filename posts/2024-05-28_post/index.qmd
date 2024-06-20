@@ -9,14 +9,16 @@ image: https://t3.ftcdn.net/jpg/05/61/12/98/360_F_561129847_uvTeNrJfhG1gCBLlYGqV
 draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
 ---
 
+** UPDATED June, 20 2024 **  
+
 # Objectif
 
 Obtenir la RS à partir des données brutes d'`Atlas` avec les informations suivantes: liste des espèces présentes, groupe taxonomique et échelles spatiales variées  
 
 # Étapes
 
-[ ] Grille à 1x1km de résolution à l'échelle du Qc (choix de la résolution basée sur un compromis par rapport aux erreurs associées aux occurrences)  
-[ ] pour chaque pixel, informations nécessaires: geom, appartenance aux différents niveaux spatiales avec ID unique (NIV_01, NIV_02, NIV_03, NIV_04, ecoregions et ecozones)  
+[X] Grille à 1x1km de résolution à l'échelle du Qc (choix de la résolution basée sur un compromis par rapport aux erreurs associées aux occurrences)  
+[ ] ~~pour chaque pixel, informations nécessaires: geom, appartenance aux différents niveaux spatiales avec ID unique (NIV_01, NIV_02, NIV_03, NIV_04, ecoregions et ecozones)~~ Changement de solution, extraction des pixels qui contiennent déjà l'information à partir des polygones!  
   
 <center><img src="wf_rs_step1.png" width=90%></center>
 
@@ -25,6 +27,7 @@ Obtenir la RS à partir des données brutes d'`Atlas` avec les informations suiv
 [ ] Extraction des espèces uniques dans chaque pixel  
 [ ] Traitement secondaire des données pour obtenir valeur de RS  
 [ ] Visualisation par carte et graphiques (cf discussion Dom)  
+[ ] Update du script Python pour lire le parquet Atlas directement dans le bucket plutôt qu'en local
 
 <img src="Dom_discu1.jpg" width=50%><img src="Dom_discu2.jpg" width=50%>   
 
