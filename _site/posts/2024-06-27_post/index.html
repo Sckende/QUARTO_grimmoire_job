@@ -7,10 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Claire-Cécile Juhasz">
-<meta name="dcterms.date" content="2024-05-28">
-<meta name="description" content="À partir des données brutes">
+<meta name="dcterms.date" content="2024-06-26">
+<meta name="description" content="Littérature sur les différentes méthodes">
 
-<title>QUARTO_grimmoire_job - Workflow pour production EBV richesse spécifique</title>
+<title>QUARTO_grimmoire_job - Interpolation valeurs manquantes dans les cubes d’EBVs</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -111,14 +111,15 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Workflow pour production EBV richesse spécifique</h1>
+      <h1 class="title">Interpolation valeurs manquantes dans les cubes d’EBVs</h1>
                   <div>
         <div class="description">
-          À partir des données brutes
+          Littérature sur les différentes méthodes
         </div>
       </div>
                           <div class="quarto-categories">
                 <div class="quarto-category">EBV</div>
+                <div class="quarto-category">recommender</div>
               </div>
                   </div>
   </div>
@@ -136,7 +137,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">May 28, 2024</p>
+        <p class="date">June 26, 2024</p>
       </div>
     </div>
     
@@ -153,12 +154,7 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#objectif" id="toc-objectif" class="nav-link active" data-scroll-target="#objectif">Objectif</a></li>
-  <li><a href="#étapes" id="toc-étapes" class="nav-link" data-scroll-target="#étapes">Étapes</a></li>
-  <li><a href="#documentationinformation" id="toc-documentationinformation" class="nav-link" data-scroll-target="#documentationinformation">Documentation/information</a>
-  <ul class="collapse">
-  <li><a href="#cadre-écologique-national-pour-le-canada" id="toc-cadre-écologique-national-pour-le-canada" class="nav-link" data-scroll-target="#cadre-écologique-national-pour-le-canada">Cadre écologique national pour le Canada</a></li>
-  <li><a href="#traitement-des-données" id="toc-traitement-des-données" class="nav-link" data-scroll-target="#traitement-des-données">Traitement des données</a></li>
-  </ul></li>
+  <li><a href="#ressources" id="toc-ressources" class="nav-link" data-scroll-target="#ressources">Ressources</a></li>
   </ul>
 </nav>
     </div>
@@ -168,73 +164,21 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>** UPDATED June, 20 2024 **</p>
 <section id="objectif" class="level1">
 <h1>Objectif</h1>
-<p>Obtenir la RS à partir des données brutes d’<code>Atlas</code> avec les informations suivantes: liste des espèces présentes, groupe taxonomique et échelles spatiales variées</p>
+<p>Le premier objectif ici est de travailler sur le remplissage des valeurs manquantes dans la grille de richesse spécifique (et liste des espèces) obtenues à partir des données d’Atlas</p>
 </section>
-<section id="étapes" class="level1">
-<h1>Étapes</h1>
-<p>[X] Grille à 1x1km de résolution à l’échelle du Qc (choix de la résolution basée sur un compromis par rapport aux erreurs associées aux occurrences)<br>
-[ ] <del>pour chaque pixel, informations nécessaires: geom, appartenance aux différents niveaux spatiales avec ID unique (NIV_01, NIV_02, NIV_03, NIV_04, ecoregions et ecozones)</del> Changement de solution, extraction des pixels qui contiennent déjà l’information à partir des polygones!</p>
-<center>
-<img src="wf_rs_step1.png" width="90%">
-</center>
-<hr>
-<p>[ ] Extraction des espèces uniques dans chaque pixel<br>
-[ ] Traitement secondaire des données pour obtenir valeur de RS<br>
-[ ] Visualisation par carte et graphiques (cf discussion Dom)<br>
-[ ] Update du script Python pour lire le parquet Atlas directement dans le bucket plutôt qu’en local</p>
-<p><img src="Dom_discu1.jpg" width="50%"><img src="Dom_discu2.jpg" width="50%"></p>
-</section>
-<section id="documentationinformation" class="level1">
-<h1>Documentation/information</h1>
-<section id="cadre-écologique-national-pour-le-canada" class="level2">
-<h2 class="anchored" data-anchor-id="cadre-écologique-national-pour-le-canada"><a href="https://sis.agr.gc.ca/siscan/nsdb/ecostrat/1999report/framework.html">Cadre écologique national pour le Canada</a></h2>
-<table class="table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Niveaux</th>
-<th>Nombred’unités</th>
-<th>Définition</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Écozones</td>
-<td>15</td>
-<td>Au sommet de la hiérarchie, les écozones dessinent la mosaïque écologique du Canada à l’échelle sous-continentale. L’écozone est une région de la surface terrestre représentative de grandes unités écologiques très généralisées caractérisées par des facteurs biotiques et abiotiques en interaction et adaptation constantes. Le Canada est divisé en 15 écozones terrestres.</td>
-</tr>
-<tr class="even">
-<td>Écoprovinces</td>
-<td>53</td>
-<td>Subdivision d’une écozone caractérisée par des assemblages distinctifs de structures et de formes de relief, de faune et de flore, d’hydrologie, de sol et de macroclimat. Par exemple, l’écoprovince de Terre-Neuve (no 6.4) est l’une des six écoprovinces comprises dans l’écozone du Bouclier boréal.</td>
-</tr>
-<tr class="odd">
-<td>Écorégions</td>
-<td>194</td>
-<td>Subdivision d’une écoprovince caractérisée par des facteurs écologiques régionaux particuliers en matière de climat, de physiographie, de végétation, de sols, d’eau et de faune. Par exemple, l’écorégion des Landes maritimes (no 114) est l’une des neuf écorégions comprises dans l’écoprovince de Terre-Neuve.</td>
-</tr>
-<tr class="even">
-<td>Écodistricts</td>
-<td>1021</td>
-<td>Subdivision d’une écorégion caractérisée par des assemblages particuliers en matière de relief, de formes de terrain, de géologie, de sols, de végétation, de plans d’eau et de faune. Par exemple, l’écodistrict du lac Jeddore (no 473) est l’un des cinq écodistricts compris dans l’écorégion des Landes maritimes.</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="traitement-des-données" class="level2">
-<h2 class="anchored" data-anchor-id="traitement-des-données">Traitement des données</h2>
-<p>💡 lors de la sélection des pixels de 1x1km du Qc dans les zones, ceux qui sont à cheval sur la limite d’un polygone sont sélectionnés plusieurs fois.<br>
-💡 autre possibilité =&gt; rasterizer toutes les occurrences par années par espèces pour ensuite aller chercher l’information par pixel avec un subset.</p>
+<section id="ressources" class="level1">
+<h1>Ressources</h1>
+<p>[ ] Alexandros Karatzoglou &amp; recommender system<br>
+[ ] https://www.youtube.com/watch?v=G4MBc40rQ2k - simpler method with Python<br>
+[ ] https://builtin.com/data-science/collaborative-filtering-recommender-system</p>
+<p>[ ] Ecological interactions and the Netflix problem - <a href="https://peerj.com/articles/3644/">Desjardins-Proulx et al 2017</a><br>
+[ ] A systematic review and research perspective on recommender systems - <a href="https://link.springer.com/article/10.1186/s40537-022-00592-5">Roy &amp; Dutta 2022</a></p>
+<p><a href="Recommender_1.png"><img src="Recommender_1.png" width="50%"></a><a href="Recommender_2.png"><img src="Recommender_2.png" width="50%"></a></p>
+<p>[ ] Clarifier recommender system (content-based filtering, collaborative filtering), KNN algo, random forests, …</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
