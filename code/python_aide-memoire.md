@@ -1,5 +1,5 @@
 ---
-title: 🐍 Aide-mémoire Python
+title: 🐍 Python
 ---
 
 # Mots réservés ou mots clés au langage `Python`
