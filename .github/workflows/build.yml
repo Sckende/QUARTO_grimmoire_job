@@ -26,7 +26,8 @@ jobs:
       #   run: R -e 'install.packages(c("rmarkdown", "knitr"))'
 
       - name: Render Quarto Project
-        run: QUARTO_DENO_EXTRA_OPTIONS="--v8-flags=--max-old-space-size=8192" quarto render
+        # run: QUARTO_DENO_EXTRA_OPTIONS="--v8-flags=--max-old-space-size=8192" quarto render
+        run: quarto render
 
       - name: Deploy gh_pages
         uses: JamesIves/github-pages-deploy-action@releases/v3
