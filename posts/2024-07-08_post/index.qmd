@@ -1,0 +1,89 @@
+---
+title: "Workflow pour production EBV richesse spécifique"
+description: "Discussion point stechniques avec Guillaume Larocque "
+author:
+  - name: Claire-Cécile Juhasz 
+date: 07-08-2024
+categories: [EBV] # self-defined categories
+image: https://t3.ftcdn.net/jpg/05/61/12/98/360_F_561129847_uvTeNrJfhG1gCBLlYGqVsfQRwvv0oUyn.jpg
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+# Objectif
+Éclaircir des points méthodologiques concernant la création de fichiers au format **geoparquet**, la modification des métadatas associées aux rasters des aires de distribution des espèces, la manipulation des rasters avec **Python** et la production de fichiers au format **netCDF** pour l,intégration des EBVs dans le [portail d'EBVs de GEOBON](https://portal.geobon.org/home) et ainsi permettre l'utilisation du package R . 
+
+# Questions
+
+## Geoparquet  
+
+0 - Quel est le meilleur format de fichier pour enregistrer les EBVs: geoparquet, geopackage, BDR classique ?
+
+1 - Actuellement, j'ai créé un **parquet** avec le Québec découpé en polygones de 1kmx1km chacun associé à une valeur de richesse spécifique et une liste d'espèces (basé sur les donnnées brutes d'Atlas). J'aimerai enregistrer ce fichier en format geoparquet pour optimiser son utilisation. J'ai suivi le workflow de Guillaume pour les sauvegardes de la BDD Atlas mais le geoparquet ne semble pas être valide (function [geopandas.to_parquet](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.to_parquet.html)). La colonne geometry est manquante et des metadonnées. "A GeoParquet file MUST include a geo key in the Parquet metadata (see FileMetaData::key_value_metadata). The value of this key MUST be a JSON-encoded UTF-8 string representing the file and column metadata that validates against the GeoParquet metadata schema. The file and column metadata fields are described below (cf https://geoparquet.org/releases/v1.0.0/ & https://github.com/geopandas/geopandas/discussions/3158)".
+
+1bis - Obligé de passer par csv pour ensuite créer le geoparquet ? 
+
+2 - Lors de l'utilisation de la fonction python **geopandas.to_parquet**, la version du Géoparquet doit être renseignée avec l'argument **schema_version**. Ma version actuelle est 0.0.3 est ne semble pas accepté ({‘0.1.0’, ‘0.4.0’, ‘1.0.0’, ‘1.1.0’, None}).
+
+3 - Lors de l'utilisation de la fonction python **geopandas.to_parquet**, serait-il bien judicieux d'utiliser l'argument **write_covering_bbox** (Writes the bounding box column for each row entry with column name ‘bbox’. Writing a bbox column can be computationally expensive, but allows you to specify a bbox in : func:read_parquet for filtered reading. Note: this bbox column is part of the newer GeoParquet 1.1 specification and should be considered as experimental. While writing the column is backwards compatible, using it for filtering may not be supported by all readers.) dans l'objectif de faire des subset de polygones 1x1km via d'autres polygones (des différents niveaux spatiales)?
+
+## Gestion des metadatas des rasters
+
+4 - Quelle est la méthode la plus efficace/facile ? Tentative avec Python (**rasterio.mera.copy()**) et gdal (gdalinfo, gdal_edit), échec avec les deux. Ma préférence irait vers GDAL car metadata plus complète mais je crois que gdal_edit dépend de **osgeo** que je n'arrive pas à installer.
+
+## Stack de raster
+
+5 - Ça a l'air chaud avec 🐍  
+
+```python
+import rasterio as rio
+import matplotlib.pyplot as plt
+from rasterio.plot import show
+
+
+sp1=rio.open("/home/local/USHERBROOKE/juhc3201/BDQC-GEOBON/data/QUEBEC_in_a_cube/Richesse_spe_version_2/data_test/vireo_flavifrons_range_2017.tif")
+plt.imshow(sp1.read(1))
+plt.show()
+sp2=rio.open("/home/local/USHERBROOKE/juhc3201/BDQC-GEOBON/data/QUEBEC_in_a_cube/Richesse_spe_version_2/data_test/vireo_gilvus_range_2017.tif")
+sp3=rio.open("/home/local/USHERBROOKE/juhc3201/BDQC-GEOBON/data/QUEBEC_in_a_cube/Richesse_spe_version_2/data_test/vireo_olivaceus_range_2017.tif")
+sp4=rio.open("/home/local/USHERBROOKE/juhc3201/BDQC-GEOBON/data/QUEBEC_in_a_cube/Richesse_spe_version_2/data_test/vireo_philadelphicus_range_2017.tif")
+sp5=rio.open("/home/local/USHERBROOKE/juhc3201/BDQC-GEOBON/data/QUEBEC_in_a_cube/Richesse_spe_version_2/data_test/vireo_solitarius_range_2017.tif")
+
+# visual
+fig, ((ax1, ax2, ax3), (ax4, ax5, ax6)) = plt.subplots(2,3)
+show((sp1, 1), ax=ax1)
+show((sp2, 1), ax=ax2)
+show((sp3, 1), ax=ax3)
+show((sp4, 1), ax=ax4)
+show((sp5, 1), ax=ax5)
+plt.show()
+
+# Preparation pour le stack
+out_img="stack_sp.tif"
+
+out_meta=sp5.meta.copy()
+out_meta.update({"count": 5})
+
+# stackage
+file_list=[sp1, sp2, sp3, sp4, sp5]
+with rio.open(out_img, 'w', **out_meta) as dest:
+    for band_nr, src in enumerate(file_list, start=1):
+        dest.write(src, band_nr)
+
+
+stack=rio.open("/home/local/USHERBROOKE/juhc3201/BDQC-GEOBON/GITHUB/BDQC_EBV_cubes_v2/stack_sp.tif")
+type(stack)
+
+
+fig, ((ax1, ax2, ax3), (ax4, ax5, ax6)) = plt.subplots(2,3)
+show((stack, 1), ax=ax1)
+show((stack, 2), ax=ax2)
+show((stack, 3), ax=ax3)
+show((stack, 4), ax=ax4)
+show((stack, 5), ax=ax5)
+plt.show()
+
+show(stack.read(1))
+plt.show()
+```
+
+6 - Globalement, demander à Guillaume de faire du code review.
