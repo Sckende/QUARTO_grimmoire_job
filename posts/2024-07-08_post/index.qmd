@@ -18,21 +18,49 @@ draft: false # setting this to `true` will prevent your post from appearing on y
 
 0 - Quel est le meilleur format de fichier pour enregistrer les EBVs: geoparquet, geopackage, BDR classique ?
 
+```
+Pas de réponse simple. Mais pour produire les EBVs, rasters pour carte nécessaire. Penser à produire des cartes par groupes taxonomiques
+```
+
 1 - Actuellement, j'ai créé un **parquet** avec le Québec découpé en polygones de 1kmx1km chacun associé à une valeur de richesse spécifique et une liste d'espèces (basé sur les donnnées brutes d'Atlas). J'aimerai enregistrer ce fichier en format geoparquet pour optimiser son utilisation. J'ai suivi le workflow de Guillaume pour les sauvegardes de la BDD Atlas mais le geoparquet ne semble pas être valide (function [geopandas.to_parquet](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.to_parquet.html)). La colonne geometry est manquante et des metadonnées. "A GeoParquet file MUST include a geo key in the Parquet metadata (see FileMetaData::key_value_metadata). The value of this key MUST be a JSON-encoded UTF-8 string representing the file and column metadata that validates against the GeoParquet metadata schema. The file and column metadata fields are described below (cf https://geoparquet.org/releases/v1.0.0/ & https://github.com/geopandas/geopandas/discussions/3158)".
+
+```
+Guillaume sur le coup!
+```
 
 1bis - Obligé de passer par csv pour ensuite créer le geoparquet ? 
 
+```
+Apparemment oui, pour le moment.
+```
+
 2 - Lors de l'utilisation de la fonction python **geopandas.to_parquet**, la version du Géoparquet doit être renseignée avec l'argument **schema_version**. Ma version actuelle est 0.0.3 est ne semble pas accepté ({‘0.1.0’, ‘0.4.0’, ‘1.0.0’, ‘1.1.0’, None}).
 
+```
+Possible problème de version. Pas vraiment de réponse à ce sujet.
+```
+
 3 - Lors de l'utilisation de la fonction python **geopandas.to_parquet**, serait-il bien judicieux d'utiliser l'argument **write_covering_bbox** (Writes the bounding box column for each row entry with column name ‘bbox’. Writing a bbox column can be computationally expensive, but allows you to specify a bbox in : func:read_parquet for filtered reading. Note: this bbox column is part of the newer GeoParquet 1.1 specification and should be considered as experimental. While writing the column is backwards compatible, using it for filtering may not be supported by all readers.) dans l'objectif de faire des subset de polygones 1x1km via d'autres polygones (des différents niveaux spatiales)?
+
+```
+Non abordée car un peu hors sujet si on passe par de la rasterization des EBVs.
+```
 
 ## Gestion des metadatas des rasters
 
 4 - Quelle est la méthode la plus efficace/facile ? Tentative avec Python (**rasterio.mera.copy()**) et gdal (gdalinfo, gdal_edit), échec avec les deux. Ma préférence irait vers GDAL car metadata plus complète mais je crois que gdal_edit dépend de **osgeo** que je n'arrive pas à installer.
 
+```
+ATTENTION --> utiliser GDALcube et les catalogues STACs où les metadatas complètes sont déjà présentes (au moins pour les cartes de Vincent).
+```
+
 ## Stack de raster
 
 5 - Ça a l'air chaud avec 🐍  
+
+```
+Cf GDALcube.
+```
 
 ```python
 import rasterio as rio
@@ -87,3 +115,7 @@ plt.show()
 ```
 
 6 - Globalement, demander à Guillaume de faire du code review.
+
+```
+APPROVED !
+```
