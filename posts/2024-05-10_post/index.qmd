@@ -34,7 +34,7 @@ draft: false # setting this to `true` will prevent your post from appearing on y
 |nom|nom|nom|
 |---|---|---|
 |Algues|Amphibiens|Angiospermes|
-|Arthropodes|Autres angiospermes|Autres invertébrés|
+|Arthropodes| |Autres invertébrés|
 |Autres plantes|Autres taxons|Bryophytes|
 |Céphalocordées (org. marins)|Conifères|Cryptogames vasculaires|
 |Mammifères|Mycètes|Oiseaux|
