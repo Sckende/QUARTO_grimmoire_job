@@ -1,0 +1,22 @@
+---
+title: "Pense-bête - Envoi de données sur les stac catalogues"
+description: "Étapes pour envoyer et effecer , si nécessaire, des collections sur les catalogues stac ACER et IO"
+author:
+  - name: Claire-Cécile Juhasz 
+date: 08-14-2024
+categories: [EBV] # self-defined categories
+image: https://t3.ftcdn.net/jpg/05/61/12/98/360_F_561129847_uvTeNrJfhG1gCBLlYGqVsfQRwvv0oUyn.jpg
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+# Étapes à suivre
+
+- cloner le repo [io-data](https://github.com/BiodiversiteQuebec/io-data)
+- créer un nouveau fichier (`nomCollection.py`) dans `bqio/datasets/` en prenant exemple sur ceux déjà existants
+- mettre à jour les éléments nécessaires dans la définition des fonctions `createCollection()` et `createItemList()`
+- à partir du répertoire `bqio`, envoyer la commande bash `docker compose run --rm gdal-python python /bqio/datasets/nomCollection.py`
+
+
+# Effacer une collection
+
+Se fait en deux étapes. La première est d'effacer les fichiers dans les buckets s3 avec `s5cmd rm 's3://bqio/nomCatalogue/nomCollection/*'`. La seconde est d'effacer les métadonnées associées à la collection dans le catalogue. Il est possible de le faire en utilisant l'extension `thunder` dans vscode. Faire une `new request`, selectionner `DELETE`, indiquer la collection à effacer (`https://acer.biodiversite-quebec.ca/stac/collections/nomCollection`ou `https://io.biodiversite-quebec.ca/stac/collections/nomCollection`), dans `Auth`, indiquer le bearer token et cliquer sur `send`.
