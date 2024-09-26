@@ -11,10 +11,10 @@ draft: false # setting this to `true` will prevent your post from appearing on y
 
 # Étapes à suivre
 
-- cloner le repo [io-data](https://github.com/BiodiversiteQuebec/io-data)
-- créer un nouveau fichier (`nomCollection.py`) dans `bqio/datasets/` en prenant exemple sur ceux déjà existants
+- cloner le repo [bq-stac](https://github.com/BiodiversiteQuebec/bq-stac)
+- créer un nouveau fichier (`nomCollection.py`) dans `bqio/datasets/` en prenant exemple sur ceux déjà existants dans le dossier datasets/acer ou io
 - mettre à jour les éléments nécessaires dans la définition des fonctions `createCollection()` et `createItemList()`
-- à partir du répertoire `bqio`, envoyer la commande bash `docker compose run --rm gdal-python python /bqio/datasets/nomCollection.py`
+- à partir du répertoire `bq-stac`, envoyer la commande bash `docker compose run --rm gdal-python python /datasets/nomDuCatalogue/nomCollection.py`
 
 
 # Effacer une collection
