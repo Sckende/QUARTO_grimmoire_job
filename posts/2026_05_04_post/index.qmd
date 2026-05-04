@@ -1,0 +1,109 @@
+---
+title: "Dissimilarité des sites au sein d'un groupe taxonomique"
+description: "Quantifier la difféerence dans la composition des communautés inventoriée à chaque site et identifier les mécanismes qui expliquent cette différence"
+author:
+  - name: Claire-Cécile Juhasz 
+date: 04-05-2026
+categories: [Réseau de Suivi, Fiche de synthèse, Analyses] # self-defined categories
+image: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSd78N_4jb06v_3Gf0ePXy1YRwnE5D7mIoqWg&s
+draft: false # setting this to `true` will prevent your post from appearing on your listing page until you're ready!
+---
+
+
+<!-- collout container  -->
+<!-- https://quarto.org/docs/authoring/callouts.html -->
+::: {.callout-tip title="Message Clé #1" style="text-align: justify"}
+Les groupes taxonomiques dont les aires de répartition ne recouvrent pas la totalité du Québec présentent un apauvrissement dans la richesse spécifique de leurs communautés le long du gradient latitudinal. Les groupes taxonomiques dont les aires de répartition recouvrent la totalité du Québec présentent davantage une rotation dans les espèces présentent dans leurs communautés, sans diminution majeure de la richesse spécifique. 
+:::
+
+::: {.callout-tip title="Message Clé #2" style="text-align: justify"}
+Les groupes taxonomiques les plus diversifiés présentent une plus grande dissimilarité entre leurs sites. 
+:::
+
+::: {.callout-tip title="Message Clé #3" style="text-align: justify"}
+Il est possible de définir des sites sentinelles qui constituent une valeur particulière pour la biodiversité au Québec et qu’il serait pertinent de garder sous surveillance étroite dans le contexte des changements actuels. 
+:::
+
+# Contexte 
+
+Le Québec est caractérisé par un fort gradient biogéographique définit par une grande variété d’écosystèmes et d’espèces. Cette biodiversité peut être caractérisée par le biais de divers indices comme la diversité béta. Cet indice permet de comparer la composition des communautés de sites répartis sur un gradient (spatial par exemple) et d’établir à quel point ces sites sont différents (originaux) les uns des autres. La dissimilarité entre deux sites peut être décomposée en deux mécanismes complémentaires : le remplacement des espèces (turnover) et la différence en richesse spécifique (Harrison et al. 1992; Williams 1996; Lennon et al. 2001). Le remplacement des espèces est associé à une substitution des espèces entre deux sites en réponse à un filtre environnemental, à des interactions interspécifiques ou à des évènements historiques (Leprieur et al 2011). La différence en richesse spécifique est causée par le fait que les espèces présentes à un site représentent un sous-échantillonnage du site avec lequel on fait la comparaison (Atmar & Patterson 1993; Baselga 2012). Cette différence peut être associée à la diversité de niches écologiques disponibles, à des phénomènes de colonisation/extinction sélectifs ou à une capacité de dispersion limitée (Legendre 2014; Marini et al 2013).  
+
+# Objectifs & questions 
+
+Notre étude vise à 
+<ol>
+  <li>quantifier la dissimilarité entre les sites inventoriés pour chaque groupe taxonomique,</li>
+  <li>identifier quels sites contribuent le plus à cette dissimilarité,</li>
+  <li>déterminer quel est le processus dominant qui caractérise cette dissimilarité et de </li>
+  <li>mettre en évidence les sites qui contribuent le plus à ces processus.</li>
+</ol>
+
+Cette connaissance permet au Réseau de Suivi d’identifier des sites à valeur particulière qui pourrait être un bon candidat pour devenir une sentinelle des perturbations de la biodiversité face aux changements climatiques. Elle permet également de soutenir ou diriger des prises de décision en termes de conservation ou de restauration si nécessaire (suite dans la section interprétation). 
+
+:::{.panel-fill}
+```{r}
+#| label: fig-plot-int
+#| fig-cap: "Example R Plot"
+library(ggplot2)
+    library(plotly)
+ 
+p <- readRDS("test_plot_inter.rds")
+ 
+    # Convert and then unselect the legend for the first trace
+    ggplotly(p) %>% 
+      style(showlegend = FALSE, traces = 1)
+```
+```{r}
+#| label: fig-plot
+#| fig-cap: "Example R Plot"
+
+library(ggplot2)
+ggplot(mpg, aes(displ, hwy)) + geom_point()
+```
+:::
+
+:::{.panel-fill} 
+```{r}
+#| label: fig-plot-int1
+#| fig-cap: "Lcbd oiseaux forestier"
+library(ggplot2)
+    library(plotly)
+ 
+p <- readRDS("dissi_lcbd_oiseaux_forestier.rds")
+ 
+    # Convert and then unselect the legend for the first trace
+    ggplotly(p) %>% 
+      style(showlegend = FALSE, traces = 1)
+```
+
+```{r}
+#| label: fig-plot-int2
+#| fig-cap: "Lcbd oiseaux marais"
+library(ggplot2)
+    library(plotly)
+ 
+p <- readRDS("dissi_lcbd_oiseaux_marais.rds")
+ 
+    # Convert and then unselect the legend for the first trace
+    ggplotly(p) %>% 
+      style(showlegend = FALSE, traces = 1)
+```
+:::
+
+:::{layout-ncol=2}
+```{r}
+#| label: fig-plot3
+#| fig-cap: "Example R Plot"
+
+library(ggplot2)
+ggplot(mpg, aes(displ, hwy)) + geom_point()
+```
+
+```{r}
+#| label: fig-plot4
+#| fig-cap: "Example R Plot"
+
+library(ggplot2)
+ggplot(mpg, aes(displ, hwy)) + geom_point()
+```
+:::

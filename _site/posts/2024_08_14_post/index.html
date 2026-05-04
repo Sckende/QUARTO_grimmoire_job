@@ -62,6 +62,23 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner h1,
+      .quarto-title-block .quarto-title-banner h2,
+      .quarto-title-block .quarto-title-banner h3,
+      .quarto-title-block .quarto-title-banner h4,
+      .quarto-title-block .quarto-title-banner h5,
+      .quarto-title-block .quarto-title-banner h6
+      {
+        color: white;
+      }
+
+      .quarto-title-block .quarto-title-banner {
+        color: white;
+background: collection.jpg;
+      }
+</style>
 
 
 <link rel="stylesheet" href="../../styles.css">
@@ -166,10 +183,10 @@ ul.task-list li input[type="checkbox"] {
 <section id="étapes-à-suivre" class="level1">
 <h1>Étapes à suivre</h1>
 <ul>
-<li>cloner le repo <a href="https://github.com/BiodiversiteQuebec/io-data">io-data</a></li>
-<li>créer un nouveau fichier (<code>nomCollection.py</code>) dans <code>bqio/datasets/</code> en prenant exemple sur ceux déjà existants</li>
+<li>cloner le repo <a href="https://github.com/BiodiversiteQuebec/bq-stac">bq-stac</a></li>
+<li>créer un nouveau fichier (<code>nomCollection.py</code>) dans <code>bqio/datasets/</code> en prenant exemple sur ceux déjà existants dans le dossier datasets/acer ou io</li>
 <li>mettre à jour les éléments nécessaires dans la définition des fonctions <code>createCollection()</code> et <code>createItemList()</code></li>
-<li>à partir du répertoire <code>bqio</code>, envoyer la commande bash <code>docker compose run --rm gdal-python python /bqio/datasets/nomCollection.py</code></li>
+<li>à partir du répertoire <code>bq-stac</code>, envoyer la commande bash <code>docker compose run --rm gdal-python python /datasets/nomDuCatalogue/nomCollection.py</code></li>
 </ul>
 </section>
 <section id="effacer-une-collection" class="level1">

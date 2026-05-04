@@ -211,68 +211,76 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="geoparquet" class="level2">
 <h2 class="anchored" data-anchor-id="geoparquet">Geoparquet</h2>
 <p>0 - Quel est le meilleur format de fichier pour enregistrer les EBVs: geoparquet, geopackage, BDR classique ?</p>
+<pre><code>Pas de réponse simple. Mais pour produire les EBVs, rasters pour carte nécessaire. Penser à produire des cartes par groupes taxonomiques</code></pre>
 <p>1 - Actuellement, j’ai créé un <strong>parquet</strong> avec le Québec découpé en polygones de 1kmx1km chacun associé à une valeur de richesse spécifique et une liste d’espèces (basé sur les donnnées brutes d’Atlas). J’aimerai enregistrer ce fichier en format geoparquet pour optimiser son utilisation. J’ai suivi le workflow de Guillaume pour les sauvegardes de la BDD Atlas mais le geoparquet ne semble pas être valide (function <a href="https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.to_parquet.html">geopandas.to_parquet</a>). La colonne geometry est manquante et des metadonnées. “A GeoParquet file MUST include a geo key in the Parquet metadata (see FileMetaData::key_value_metadata). The value of this key MUST be a JSON-encoded UTF-8 string representing the file and column metadata that validates against the GeoParquet metadata schema. The file and column metadata fields are described below (cf https://geoparquet.org/releases/v1.0.0/ &amp; https://github.com/geopandas/geopandas/discussions/3158)”.</p>
+<pre><code>Guillaume sur le coup!</code></pre>
 <p>1bis - Obligé de passer par csv pour ensuite créer le geoparquet ?</p>
+<pre><code>Apparemment oui, pour le moment.</code></pre>
 <p>2 - Lors de l’utilisation de la fonction python <strong>geopandas.to_parquet</strong>, la version du Géoparquet doit être renseignée avec l’argument <strong>schema_version</strong>. Ma version actuelle est 0.0.3 est ne semble pas accepté ({‘0.1.0’, ‘0.4.0’, ‘1.0.0’, ‘1.1.0’, None}).</p>
+<pre><code>Possible problème de version. Pas vraiment de réponse à ce sujet.</code></pre>
 <p>3 - Lors de l’utilisation de la fonction python <strong>geopandas.to_parquet</strong>, serait-il bien judicieux d’utiliser l’argument <strong>write_covering_bbox</strong> (Writes the bounding box column for each row entry with column name ‘bbox’. Writing a bbox column can be computationally expensive, but allows you to specify a bbox in : func:read_parquet for filtered reading. Note: this bbox column is part of the newer GeoParquet 1.1 specification and should be considered as experimental. While writing the column is backwards compatible, using it for filtering may not be supported by all readers.) dans l’objectif de faire des subset de polygones 1x1km via d’autres polygones (des différents niveaux spatiales)?</p>
+<pre><code>Non abordée car un peu hors sujet si on passe par de la rasterization des EBVs.</code></pre>
 </section>
 <section id="gestion-des-metadatas-des-rasters" class="level2">
 <h2 class="anchored" data-anchor-id="gestion-des-metadatas-des-rasters">Gestion des metadatas des rasters</h2>
 <p>4 - Quelle est la méthode la plus efficace/facile ? Tentative avec Python (<strong>rasterio.mera.copy()</strong>) et gdal (gdalinfo, gdal_edit), échec avec les deux. Ma préférence irait vers GDAL car metadata plus complète mais je crois que gdal_edit dépend de <strong>osgeo</strong> que je n’arrive pas à installer.</p>
+<pre><code>ATTENTION --&gt; utiliser GDALcube et les catalogues STACs où les metadatas complètes sont déjà présentes (au moins pour les cartes de Vincent).</code></pre>
 </section>
 <section id="stack-de-raster" class="level2">
 <h2 class="anchored" data-anchor-id="stack-de-raster">Stack de raster</h2>
 <p>5 - Ça a l’air chaud avec 🐍</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rasterio <span class="im">as</span> rio</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rasterio.plot <span class="im">import</span> show</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>sp1<span class="op">=</span>rio.<span class="bu">open</span>(<span class="st">"/home/local/USHERBROOKE/juhc3201/BDQC-GEOBON/data/QUEBEC_in_a_cube/Richesse_spe_version_2/data_test/vireo_flavifrons_range_2017.tif"</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>plt.imshow(sp1.read(<span class="dv">1</span>))</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>sp2<span class="op">=</span>rio.<span class="bu">open</span>(<span class="st">"/home/local/USHERBROOKE/juhc3201/BDQC-GEOBON/data/QUEBEC_in_a_cube/Richesse_spe_version_2/data_test/vireo_gilvus_range_2017.tif"</span>)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>sp3<span class="op">=</span>rio.<span class="bu">open</span>(<span class="st">"/home/local/USHERBROOKE/juhc3201/BDQC-GEOBON/data/QUEBEC_in_a_cube/Richesse_spe_version_2/data_test/vireo_olivaceus_range_2017.tif"</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>sp4<span class="op">=</span>rio.<span class="bu">open</span>(<span class="st">"/home/local/USHERBROOKE/juhc3201/BDQC-GEOBON/data/QUEBEC_in_a_cube/Richesse_spe_version_2/data_test/vireo_philadelphicus_range_2017.tif"</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>sp5<span class="op">=</span>rio.<span class="bu">open</span>(<span class="st">"/home/local/USHERBROOKE/juhc3201/BDQC-GEOBON/data/QUEBEC_in_a_cube/Richesse_spe_version_2/data_test/vireo_solitarius_range_2017.tif"</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># visual</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>fig, ((ax1, ax2, ax3), (ax4, ax5, ax6)) <span class="op">=</span> plt.subplots(<span class="dv">2</span>,<span class="dv">3</span>)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>show((sp1, <span class="dv">1</span>), ax<span class="op">=</span>ax1)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>show((sp2, <span class="dv">1</span>), ax<span class="op">=</span>ax2)</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>show((sp3, <span class="dv">1</span>), ax<span class="op">=</span>ax3)</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>show((sp4, <span class="dv">1</span>), ax<span class="op">=</span>ax4)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>show((sp5, <span class="dv">1</span>), ax<span class="op">=</span>ax5)</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Preparation pour le stack</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>out_img<span class="op">=</span><span class="st">"stack_sp.tif"</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>out_meta<span class="op">=</span>sp5.meta.copy()</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>out_meta.update({<span class="st">"count"</span>: <span class="dv">5</span>})</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co"># stackage</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>file_list<span class="op">=</span>[sp1, sp2, sp3, sp4, sp5]</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> rio.<span class="bu">open</span>(out_img, <span class="st">'w'</span>, <span class="op">**</span>out_meta) <span class="im">as</span> dest:</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> band_nr, src <span class="kw">in</span> <span class="bu">enumerate</span>(file_list, start<span class="op">=</span><span class="dv">1</span>):</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>        dest.write(src, band_nr)</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>stack<span class="op">=</span>rio.<span class="bu">open</span>(<span class="st">"/home/local/USHERBROOKE/juhc3201/BDQC-GEOBON/GITHUB/BDQC_EBV_cubes_v2/stack_sp.tif"</span>)</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(stack)</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>fig, ((ax1, ax2, ax3), (ax4, ax5, ax6)) <span class="op">=</span> plt.subplots(<span class="dv">2</span>,<span class="dv">3</span>)</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>show((stack, <span class="dv">1</span>), ax<span class="op">=</span>ax1)</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>show((stack, <span class="dv">2</span>), ax<span class="op">=</span>ax2)</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>show((stack, <span class="dv">3</span>), ax<span class="op">=</span>ax3)</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>show((stack, <span class="dv">4</span>), ax<span class="op">=</span>ax4)</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>show((stack, <span class="dv">5</span>), ax<span class="op">=</span>ax5)</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>show(stack.read(<span class="dv">1</span>))</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Cf GDALcube.</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> rasterio <span class="im">as</span> rio</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rasterio.plot <span class="im">import</span> show</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>sp1<span class="op">=</span>rio.<span class="bu">open</span>(<span class="st">"/home/local/USHERBROOKE/juhc3201/BDQC-GEOBON/data/QUEBEC_in_a_cube/Richesse_spe_version_2/data_test/vireo_flavifrons_range_2017.tif"</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>plt.imshow(sp1.read(<span class="dv">1</span>))</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>sp2<span class="op">=</span>rio.<span class="bu">open</span>(<span class="st">"/home/local/USHERBROOKE/juhc3201/BDQC-GEOBON/data/QUEBEC_in_a_cube/Richesse_spe_version_2/data_test/vireo_gilvus_range_2017.tif"</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>sp3<span class="op">=</span>rio.<span class="bu">open</span>(<span class="st">"/home/local/USHERBROOKE/juhc3201/BDQC-GEOBON/data/QUEBEC_in_a_cube/Richesse_spe_version_2/data_test/vireo_olivaceus_range_2017.tif"</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>sp4<span class="op">=</span>rio.<span class="bu">open</span>(<span class="st">"/home/local/USHERBROOKE/juhc3201/BDQC-GEOBON/data/QUEBEC_in_a_cube/Richesse_spe_version_2/data_test/vireo_philadelphicus_range_2017.tif"</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>sp5<span class="op">=</span>rio.<span class="bu">open</span>(<span class="st">"/home/local/USHERBROOKE/juhc3201/BDQC-GEOBON/data/QUEBEC_in_a_cube/Richesse_spe_version_2/data_test/vireo_solitarius_range_2017.tif"</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co"># visual</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>fig, ((ax1, ax2, ax3), (ax4, ax5, ax6)) <span class="op">=</span> plt.subplots(<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>show((sp1, <span class="dv">1</span>), ax<span class="op">=</span>ax1)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>show((sp2, <span class="dv">1</span>), ax<span class="op">=</span>ax2)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>show((sp3, <span class="dv">1</span>), ax<span class="op">=</span>ax3)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>show((sp4, <span class="dv">1</span>), ax<span class="op">=</span>ax4)</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>show((sp5, <span class="dv">1</span>), ax<span class="op">=</span>ax5)</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Preparation pour le stack</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>out_img<span class="op">=</span><span class="st">"stack_sp.tif"</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>out_meta<span class="op">=</span>sp5.meta.copy()</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>out_meta.update({<span class="st">"count"</span>: <span class="dv">5</span>})</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="co"># stackage</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>file_list<span class="op">=</span>[sp1, sp2, sp3, sp4, sp5]</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> rio.<span class="bu">open</span>(out_img, <span class="st">'w'</span>, <span class="op">**</span>out_meta) <span class="im">as</span> dest:</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> band_nr, src <span class="kw">in</span> <span class="bu">enumerate</span>(file_list, start<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>        dest.write(src, band_nr)</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>stack<span class="op">=</span>rio.<span class="bu">open</span>(<span class="st">"/home/local/USHERBROOKE/juhc3201/BDQC-GEOBON/GITHUB/BDQC_EBV_cubes_v2/stack_sp.tif"</span>)</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(stack)</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>fig, ((ax1, ax2, ax3), (ax4, ax5, ax6)) <span class="op">=</span> plt.subplots(<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>show((stack, <span class="dv">1</span>), ax<span class="op">=</span>ax1)</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>show((stack, <span class="dv">2</span>), ax<span class="op">=</span>ax2)</span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>show((stack, <span class="dv">3</span>), ax<span class="op">=</span>ax3)</span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>show((stack, <span class="dv">4</span>), ax<span class="op">=</span>ax4)</span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>show((stack, <span class="dv">5</span>), ax<span class="op">=</span>ax5)</span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>show(stack.read(<span class="dv">1</span>))</span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>6 - Globalement, demander à Guillaume de faire du code review.</p>
+<pre><code>APPROVED !</code></pre>
 
 
 </section>
