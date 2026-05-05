@@ -40,31 +40,10 @@ Notre étude vise à
 
 Cette connaissance permet au Réseau de Suivi d’identifier des sites à valeur particulière qui pourrait être un bon candidat pour devenir une sentinelle des perturbations de la biodiversité face aux changements climatiques. Elle permet également de soutenir ou diriger des prises de décision en termes de conservation ou de restauration si nécessaire (suite dans la section interprétation). 
 
-:::{.panel-fill}
-```{r}
-#| label: fig-plot-int
-#| fig-cap: "Example R Plot"
-library(ggplot2)
-    library(plotly)
- 
-p <- readRDS("test_plot_inter.rds")
- 
-    # Convert and then unselect the legend for the first trace
-    ggplotly(p) %>% 
-      style(showlegend = FALSE, traces = 1)
-```
-```{r}
-#| label: fig-plot
-#| fig-cap: "Example R Plot"
-
-library(ggplot2)
-ggplot(mpg, aes(displ, hwy)) + geom_point()
-```
-:::
-
-:::{.panel-fill} 
-```{r}
-#| label: fig-plot-int1
+::: {layout-ncol=2 }
+:::{.card style="border: 2px solid #286aa7;"}
+```{r, echo = FALSE, message = FALSE, warnings = FALSE}
+#| label: fig-plot-foret
 #| fig-cap: "Lcbd oiseaux forestier"
 library(ggplot2)
     library(plotly)
@@ -75,9 +54,11 @@ p <- readRDS("dissi_lcbd_oiseaux_forestier.rds")
     ggplotly(p) %>% 
       style(showlegend = FALSE, traces = 1)
 ```
+:::
 
-```{r}
-#| label: fig-plot-int2
+:::{.card style="border: 2px solid #28a745;"}
+```{r, echo = FALSE, message = FALSE, warnings = FALSE}
+#| label: fig-plot-marais
 #| fig-cap: "Lcbd oiseaux marais"
 library(ggplot2)
     library(plotly)
@@ -89,21 +70,36 @@ p <- readRDS("dissi_lcbd_oiseaux_marais.rds")
       style(showlegend = FALSE, traces = 1)
 ```
 :::
+:::
 
-:::{layout-ncol=2}
-```{r}
-#| label: fig-plot3
-#| fig-cap: "Example R Plot"
-
+::: {layout-ncol=2 }
+:::{.card style="border: 2px solid #286aa7;"}
+```{r, echo = FALSE, message = FALSE, warnings = FALSE}
+#| label: fig-plot-toundra
+#| fig-cap: "Lcbd oiseaux toundra"
 library(ggplot2)
-ggplot(mpg, aes(displ, hwy)) + geom_point()
+    library(plotly)
+ 
+p <- readRDS("dissi_lcbd_oiseaux_toundrique.rds")
+ 
+    # Convert and then unselect the legend for the first trace
+    ggplotly(p) %>% 
+      style(showlegend = FALSE, traces = 1)
 ```
+:::
 
-```{r}
-#| label: fig-plot4
-#| fig-cap: "Example R Plot"
-
+:::{.card style="border: 2px solid #28a745;"}
+```{r, echo = FALSE, message = FALSE, warnings = FALSE}
+#| label: fig-plot-tourbiere
+#| fig-cap: "Lcbd oiseaux tourbière"
 library(ggplot2)
-ggplot(mpg, aes(displ, hwy)) + geom_point()
+    library(plotly)
+ 
+p <- readRDS("dissi_lcbd_oiseaux_tourbière.rds")
+ 
+    # Convert and then unselect the legend for the first trace
+    ggplotly(p) %>% 
+      style(showlegend = FALSE, traces = 1)
 ```
+:::
 :::
