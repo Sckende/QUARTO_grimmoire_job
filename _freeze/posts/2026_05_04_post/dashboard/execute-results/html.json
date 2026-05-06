@@ -1,0 +1,17 @@
+{
+  "hash": "87b02fd3c8dec004ade0c7e2a70f6250",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Dissimilarité des sites\"\nauthor: \"Biodiversité Québec\"\nformat: \n  dashboard:\n    logo: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSd78N_4jb06v_3Gf0ePXy1YRwnE5D7mIoqWg&s\n    nav-buttons: [github]\n---\n\n## Row {height=60%}\n\n### {width=40%}\nExplication des résultats 1\n\n###\n\n::: {.cell}\n\n```{.r .cell-code}\nplot(iris)\n```\n\n::: {.cell-output-display}\n![](dashboard_files/figure-html/unnamed-chunk-1-1.png){width=672}\n:::\n:::\n\n\n## Row \n\n### {width=40%}\nCard pour la selection des options des rendus à droite\n\n### {.tabset height=40%}\n\n#### Global\n\n::: {.cell}\n\n```{.r .cell-code}\nplot(cars)\n```\n\n::: {.cell-output-display}\n![](dashboard_files/figure-html/unnamed-chunk-2-1.png){width=672}\n:::\n:::\n\n\n#### Habitats\n\n::: {.cell}\n\n```{.r .cell-code}\nplot(women)\n```\n\n::: {.cell-output-display}\n![](dashboard_files/figure-html/unnamed-chunk-3-1.png){width=672}\n:::\n:::\n",
+    "supporting": [
+      "dashboard_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

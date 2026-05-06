@@ -1,0 +1,35 @@
+---
+title: "Dissimilarité des sites"
+author: "Biodiversité Québec"
+format: 
+  dashboard:
+    logo: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSd78N_4jb06v_3Gf0ePXy1YRwnE5D7mIoqWg&s
+    nav-buttons: [github]
+---
+
+## Row {height=60%}
+
+### {width=40%}
+Explication des résultats 1
+
+###
+```{r}
+plot(iris)
+```
+
+## Row 
+
+### {width=40%}
+Card pour la selection des options des rendus à droite
+
+### {.tabset height=40%}
+
+#### Global
+```{r}
+plot(cars)
+```
+
+#### Habitats
+```{r}
+plot(women)
+```
